@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FightSimV2
 {
-    class Fighter
+    class Fighter : Vapen
     {
         int hp;
         int dmg;
@@ -22,7 +22,7 @@ namespace FightSimV2
 
         public int Attack(int enemyArmor)
         {
-            dmg = GenRandom(50, 100);
+            dmg = GenRandom(minDmg, maxDmg);
             return dmg / enemyArmor;
         }
         public void Hurt(int amount)
@@ -51,6 +51,14 @@ namespace FightSimV2
             
             Random gen = new Random();
             return gen.Next(min, max);
+        }
+        public void Present()
+        {
+            Console.WriteLine("Name: " + name);
+            Console.WriteLine("\nStats: ");
+            Console.WriteLine("HP: "+ hp);
+            Console.WriteLine("Armor rating: " + armor);
+            Console.WriteLine("Min/Max Damage: " + minDmg + "-" + maxDmg);
         }
     }
 }

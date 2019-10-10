@@ -9,9 +9,10 @@ namespace FightSimV2
 {
     class Program
     {
+
         static void Main(string[] args)
         {
-
+            var keyRead = Console.ReadKey(true).Key;
 
             Fighter fighterA = new Fighter(); //skapar 2 fighter med namn input
             Thread.Sleep(27);
@@ -21,8 +22,8 @@ namespace FightSimV2
             {
                 if (fighterA.IsAlive() && fighterB.IsAlive())  //när båda lever
                 {
-                    Console.WriteLine(fighterA.name + " HP: " + fighterA.GetHp());  //Skriv ut deras hp
-                    Console.WriteLine(fighterB.name + " HP: " + fighterB.GetHp());
+                    Console.WriteLine(fighterA.name + "'s HP: " + fighterA.GetHp());  //Skriv ut deras hp
+                    Console.WriteLine(fighterB.name + "'s HP: " + fighterB.GetHp());
 
                     fighterB.Hurt(fighterA.Attack(fighterB.armor));
                     fighterA.Hurt(fighterB.Attack(fighterA.armor));  //ta skada från den andras attack faktorera in armor
@@ -45,6 +46,11 @@ namespace FightSimV2
             }
 
             Console.ReadLine();
+        }
+        public void AttackOptions()
+        {
+            Console.WriteLine("1: Light Attack");
+            Console.WriteLine("2: Heavy Attack");
         }
     }
 }
