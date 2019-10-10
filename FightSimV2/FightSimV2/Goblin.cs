@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace FightSimV2
 {
-    class Vapen
+    class Goblin : Fighter
     {
-        protected int minDmg = 50;
-        protected int maxDmg = 100;
+        public Goblin()
+        {
+            hp -= 100;
+            maxDmg += 20;
+        }
     }
 }

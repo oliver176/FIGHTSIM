@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace FightSimV2
 {
-    class Vapen
+    class Zombie : Fighter
     {
-        protected int minDmg = 50;
-        protected int maxDmg = 100;
+        public Zombie()
+        {
+            hp += 1000;
+            minDmg -= 20;
+        }
     }
 }

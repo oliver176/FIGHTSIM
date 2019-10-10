@@ -10,9 +10,9 @@ namespace FightSimV2
     {
         bool defStance = false;
         bool offStance = false;
-        int hp;
-        int dmg;
-        int hitChance;
+        protected int hp;
+        protected int dmg;
+        protected int hitChance;
         public int armor;
         public string name;
 
