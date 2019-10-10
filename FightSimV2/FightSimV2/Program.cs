@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FightSimV2
@@ -10,8 +11,11 @@ namespace FightSimV2
     {
         static void Main(string[] args)
         {
-            Fighter fighterA = new Fighter(Console.ReadLine()); //skapar 2 fighter med namn input
-            Fighter fighterB = new Fighter(Console.ReadLine());
+
+
+            Fighter fighterA = new Fighter(); //skapar 2 fighter med namn input
+            Thread.Sleep(27);
+            Fighter fighterB = new Fighter();
 
             while (true)
             {

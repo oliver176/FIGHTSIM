@@ -10,20 +10,19 @@ namespace FightSimV2
     {
         int hp;
         int dmg;
-        int armor;
+        public int armor;
         public string name;
-        Random gen = new Random();
 
-        public Fighter(string getName)   //input för namn
+        public Fighter()   //input för namn
         {
-            armor = gen.Next(0, 5);
+            armor = GenRandom(1, 5);
             hp = 1000;
-            name = getName;
+            name = Names();
         }
 
         public int Attack(int enemyArmor)
         {
-            dmg = gen.Next(50, 100);
+            dmg = GenRandom(50, 100);
             return dmg / enemyArmor;
         }
         public void Hurt(int amount)
@@ -42,6 +41,16 @@ namespace FightSimV2
         {
             return hp;
         }
-
+        public string Names()
+        {
+            List<string> nameList = new List<string>(new string[] {"Oliver", "Eric", "Vladivostok", "Gaston", "Muntop", "Doc", "Marley", "Heehoo"});
+            return nameList[GenRandom(0, nameList.Count - 1)];  //returnerar random namn från string listan
+        }
+        public int GenRandom(int min, int max)
+        {
+            
+            Random gen = new Random();
+            return gen.Next(min, max);
+        }
     }
 }
