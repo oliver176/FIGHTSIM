@@ -31,7 +31,7 @@ namespace FightSimV2
                     Console.WriteLine("___________________");
                     Console.ReadLine();
                 }
-                else if (fighterA.IsAlive() == false || fighterB.IsAlive() == false) //Om någon är död
+                else if (!fighterA.IsAlive() || !fighterB.IsAlive()) //Om någon är död
                 {
                     if (fighterA.IsAlive())
                     {
@@ -46,6 +46,11 @@ namespace FightSimV2
             }
 
             Console.ReadLine();
+        }
+        public void StanceOptions()
+        {
+            Console.WriteLine("1: Defensive Stance");
+            Console.WriteLine("2: Offensive Stance");
         }
         public void AttackOptions()
         {

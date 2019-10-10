@@ -8,8 +8,11 @@ namespace FightSimV2
 {
     class Fighter : Vapen
     {
+        bool defStance = false;
+        bool offStance = false;
         int hp;
         int dmg;
+        int precision;
         public int armor;
         public string name;
 
@@ -19,7 +22,28 @@ namespace FightSimV2
             hp = 1000;
             name = Names();
         }
-
+        public void DefensiveStance()
+        {
+            if (offStance) //sätt tillbaks dmg till sitt normala värde
+            {
+                minDmg -= 20;
+                maxDmg -= 40;
+                offStance = false;
+            }
+            armor += 2;
+            defStance = true;
+        }
+        public void OffensiveStance()
+        {
+            if (defStance) //sätt tillbaks armor till sitt normala värde
+            {
+                armor -= 2;
+                defStance = false;
+            }
+            minDmg += 20;
+            maxDmg += 40;
+            offStance = true;
+        }
         public int Attack(int enemyArmor)
         {
             dmg = GenRandom(minDmg, maxDmg);
