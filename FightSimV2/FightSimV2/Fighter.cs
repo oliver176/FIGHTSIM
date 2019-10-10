@@ -78,6 +78,10 @@ namespace FightSimV2
         }
         public int GetHp()
         {
+            if (hp < 0)
+            {
+                hp = 0;
+            }
             return hp;
         }
         public string Names()
@@ -93,6 +97,7 @@ namespace FightSimV2
         }
         public void Present()
         {
+            Console.Clear();
             Console.WriteLine("Name: " + name);
             Console.WriteLine("\nStats: ");
             Console.WriteLine("HP: "+ hp);

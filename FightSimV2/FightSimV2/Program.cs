@@ -7,17 +7,41 @@ namespace FightSimV2
     {
         private static void Main(string[] args)
         {
-            var keyRead = Console.ReadKey(true).Key;
+            bool fighting = false;
+            bool mainMenu = true;
 
             Fighter fighterA = new Fighter(); //skapar 2 fighter med namn input
             Thread.Sleep(27);
             Fighter fighterB = new Fighter();
 
-            while (true)
+            var keyRead = Console.ReadKey(true).Key;
+
+            while (mainMenu)
             {
+                MainMenu();
+
+                keyRead = Console.ReadKey(true).Key;
+                if (keyRead == ConsoleKey.D1)
+                {
+                    fighterA.Present();
+                }
+                if (keyRead == ConsoleKey.D2)
+                {
+                    fighterB.Present();
+                }
+                if (keyRead == ConsoleKey.D3)
+                {
+                    mainMenu = false;
+                    fighting = true; //sätt igång while loopen med fight koden
+                }
+            }
+            while (fighting)
+            {
+
                 if (fighterA.IsAlive() && fighterB.IsAlive())  //när båda lever
                 {
                     StanceOptions();
+                    keyRead = Console.ReadKey(true).Key;
                     if (keyRead == ConsoleKey.D1)
                     {
                         fighterA.DefensiveStance();
@@ -26,15 +50,30 @@ namespace FightSimV2
                     {
                         fighterA.OffensiveStance();
                     }
+
                     AttackOptions();
+                    keyRead = Console.ReadKey(true).Key;
+                    if (keyRead == ConsoleKey.D1)
+                    {
+                        fighterB.Hurt(fighterA.LightAttack(fighterB.armor)); //light attack faktorerar in armor
+                    }
+                    else if (keyRead == ConsoleKey.D2)
+                    {
+                        fighterB.Hurt(fighterA.HeavyAttack(fighterB.armor)); //heavy attack faktorerar in armor
+                    }
+
+                    if (fighterB.GenRandom(0, 1) == 0)
+                    {
+                        fighterA.Hurt(fighterB.LightAttack(fighterA.armor));
+                    }
+                    else
+                    {
+                        fighterA.Hurt(fighterB.HeavyAttack(fighterA.armor));
+                    }
+                    //Console.Clear();
                     Console.WriteLine(fighterA.name + "'s HP: " + fighterA.GetHp());  //Skriv ut deras hp
                     Console.WriteLine(fighterB.name + "'s HP: " + fighterB.GetHp());
-
-                    fighterB.Hurt(fighterA.LightAttack(fighterB.armor));
-                    fighterA.Hurt(fighterB.LightAttack(fighterA.armor));  //ta skada från den andras attack faktorera in armor
-
                     Console.WriteLine("___________________");
-                    Console.ReadLine();
                 }
                 else if (!fighterA.IsAlive() || !fighterB.IsAlive()) //Om någon är död
                 {
@@ -52,7 +91,14 @@ namespace FightSimV2
 
             Console.ReadLine();
         }
-
+        private static void MainMenu()
+        {
+            Console.WriteLine();
+            Console.WriteLine("1: Present Character");
+            Console.WriteLine("2: Present Opponent");
+            Console.WriteLine("3: Start Fighting");
+            Console.WriteLine();
+        }
         private static void StanceOptions()
         {
             Console.WriteLine("1: Defensive Stance");
@@ -61,8 +107,9 @@ namespace FightSimV2
 
         private static void AttackOptions()
         {
+            Console.Clear();
             Console.WriteLine("1: Light Attack");
-            Console.WriteLine("2: Heavy Attack");
+            Console.WriteLine("2: Heavy Attack\n");
         }
     }
 }
