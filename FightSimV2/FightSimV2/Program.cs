@@ -10,8 +10,6 @@ namespace FightSimV2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Name the 2 fighters!");
-
             Fighter fighterA = new Fighter(Console.ReadLine()); //skapar 2 fighter med namn input
             Fighter fighterB = new Fighter(Console.ReadLine());
 
@@ -19,24 +17,24 @@ namespace FightSimV2
             {
                 if (fighterA.IsAlive() && fighterB.IsAlive())  //när båda lever
                 {
-                    Console.WriteLine(fighterA.name + fighterA.GetHp());  //Skriv ut deras hp
-                    Console.WriteLine(fighterB.name + fighterB.GetHp());
+                    Console.WriteLine(fighterA.name + " HP: " + fighterA.GetHp());  //Skriv ut deras hp
+                    Console.WriteLine(fighterB.name + " HP: " + fighterB.GetHp());
 
-                    fighterB.Hurt(fighterA.Attack());
-                    fighterA.Hurt(fighterB.Attack());  //ta skada från den andras attack
+                    fighterB.Hurt(fighterA.Attack(fighterB.armor));
+                    fighterA.Hurt(fighterB.Attack(fighterA.armor));  //ta skada från den andras attack faktorera in armor
 
-                    Console.WriteLine("___________");
+                    Console.WriteLine("___________________");
                     Console.ReadLine();
                 }
                 else if (fighterA.IsAlive() == false || fighterB.IsAlive() == false) //Om någon är död
                 {
                     if (fighterA.IsAlive())
                     {
-                        Console.WriteLine("Player A WINS!");
+                        Console.WriteLine(fighterA.name + " WINS!");
                     }
                     else
                     {
-                        Console.WriteLine("Player B WINS");
+                        Console.WriteLine(fighterB.name + " WINS");
                     }
                     break; // :)
                 }

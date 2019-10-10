@@ -10,19 +10,21 @@ namespace FightSimV2
     {
         int hp;
         int dmg;
+        int armor;
         public string name;
         Random gen = new Random();
 
         public Fighter(string getName)   //input för namn
         {
-            hp = 100;
-            dmg = gen.Next(3, 20);
+            armor = gen.Next(0, 5);
+            hp = 1000;
             name = getName;
         }
 
-        public int Attack()
+        public int Attack(int enemyArmor)
         {
-            return dmg;
+            dmg = gen.Next(50, 100);
+            return dmg / enemyArmor;
         }
         public void Hurt(int amount)
         {
