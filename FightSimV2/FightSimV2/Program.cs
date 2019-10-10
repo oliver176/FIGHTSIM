@@ -37,7 +37,6 @@ namespace FightSimV2
             }
             while (fighting)
             {
-
                 if (fighterA.IsAlive() && fighterB.IsAlive())  //när båda lever
                 {
                     StanceOptions();
@@ -80,17 +79,19 @@ namespace FightSimV2
                     if (fighterA.IsAlive())
                     {
                         Console.WriteLine(fighterA.name + " WINS!");
+                        fighterA.ReceiveXP(); //få xp om du vinner
                     }
                     else
                     {
                         Console.WriteLine(fighterB.name + " WINS");
                     }
-                    break; // :)
+                    fighting = false;
                 }
             }
 
             Console.ReadLine();
         }
+
         private static void MainMenu()
         {
             Console.WriteLine();
@@ -99,6 +100,7 @@ namespace FightSimV2
             Console.WriteLine("3: Start Fighting");
             Console.WriteLine();
         }
+
         private static void StanceOptions()
         {
             Console.WriteLine("1: Defensive Stance");

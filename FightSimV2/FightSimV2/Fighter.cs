@@ -10,16 +10,14 @@ namespace FightSimV2
     {
         bool defStance = false;
         bool offStance = false;
-        protected int hp;
-        protected int dmg;
-        protected int hitChance;
-        public int armor;
+        int xp = 0;
         public string name;
 
         public Fighter()   //input för namn
         {
+            maxHP = 1000;
             armor = GenRandom(1, 5);
-            hp = 1000;
+            hp = maxHP;
             name = Names();
         }
         public void DefensiveStance()
@@ -84,6 +82,14 @@ namespace FightSimV2
             }
             return hp;
         }
+        public int GetXP()
+        {
+            return xp;
+        }
+        public void ReceiveXP()
+        {
+            xp += 25;
+        }
         public string Names()
         {
             List<string> nameList = new List<string>(new string[] {"Oliver", "Eric", "Vladivostok", "Gaston", "Muntop", "Doc", "Marley", "Heehoo"});
@@ -99,10 +105,14 @@ namespace FightSimV2
         {
             Console.Clear();
             Console.WriteLine("Name: " + name);
-            Console.WriteLine("\nStats: ");
-            Console.WriteLine("HP: "+ hp);
+            Console.WriteLine("\nHP: " + hp);
+            Console.WriteLine("XP: " + xp);
             Console.WriteLine("Armor rating: " + armor);
             Console.WriteLine("Min/Max Damage: " + minDmg + "-" + maxDmg);
+        }
+        public void ResetHP()
+        {
+            hp = maxHP;
         }
     }
 }
