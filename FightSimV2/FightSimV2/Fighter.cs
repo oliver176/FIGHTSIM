@@ -12,7 +12,7 @@ namespace FightSimV2
         bool offStance = false;
         int hp;
         int dmg;
-        int precision;
+        int hitChance;
         public int armor;
         public string name;
 
@@ -44,10 +44,25 @@ namespace FightSimV2
             maxDmg += 40;
             offStance = true;
         }
-        public int Attack(int enemyArmor)
+        public int LightAttack(int enemyArmor)
         {
-            dmg = GenRandom(minDmg, maxDmg);
-            return dmg / enemyArmor;
+            hitChance = GenRandom(1, 100);
+            if (hitChance > 33)
+            {
+                dmg = GenRandom(minDmg, maxDmg);
+                return dmg / enemyArmor;
+            }
+            else return 0;
+        }
+        public int HeavyAttack(int enemyArmor)
+        {
+            hitChance = GenRandom(1, 75);
+            if (hitChance > 33)
+            {
+                dmg = GenRandom(minDmg, maxDmg);
+                return (dmg / enemyArmor) + minDmg;
+            }
+            else return 0;
         }
         public void Hurt(int amount)
         {

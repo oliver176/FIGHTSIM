@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace FightSimV2
 {
-    class Program
+    internal class Program
     {
-
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var keyRead = Console.ReadKey(true).Key;
 
@@ -22,11 +17,21 @@ namespace FightSimV2
             {
                 if (fighterA.IsAlive() && fighterB.IsAlive())  //när båda lever
                 {
+                    StanceOptions();
+                    if (keyRead == ConsoleKey.D1)
+                    {
+                        fighterA.DefensiveStance();
+                    }
+                    else if (keyRead == ConsoleKey.D2)
+                    {
+                        fighterA.OffensiveStance();
+                    }
+                    AttackOptions();
                     Console.WriteLine(fighterA.name + "'s HP: " + fighterA.GetHp());  //Skriv ut deras hp
                     Console.WriteLine(fighterB.name + "'s HP: " + fighterB.GetHp());
 
-                    fighterB.Hurt(fighterA.Attack(fighterB.armor));
-                    fighterA.Hurt(fighterB.Attack(fighterA.armor));  //ta skada från den andras attack faktorera in armor
+                    fighterB.Hurt(fighterA.LightAttack(fighterB.armor));
+                    fighterA.Hurt(fighterB.LightAttack(fighterA.armor));  //ta skada från den andras attack faktorera in armor
 
                     Console.WriteLine("___________________");
                     Console.ReadLine();
@@ -47,12 +52,14 @@ namespace FightSimV2
 
             Console.ReadLine();
         }
-        public void StanceOptions()
+
+        private static void StanceOptions()
         {
             Console.WriteLine("1: Defensive Stance");
             Console.WriteLine("2: Offensive Stance");
         }
-        public void AttackOptions()
+
+        private static void AttackOptions()
         {
             Console.WriteLine("1: Light Attack");
             Console.WriteLine("2: Heavy Attack");
