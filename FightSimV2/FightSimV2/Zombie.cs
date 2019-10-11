@@ -10,8 +10,10 @@ namespace FightSimV2
     {
         public Zombie()
         {
+            ResetHP();
             hp += 1000;
             minDmg -= 20;
+
         }
         public override int LightAttack(int enemyArmor)
         {

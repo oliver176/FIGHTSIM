@@ -9,87 +9,101 @@ namespace FightSimV2
         {
             bool fighting = false;
             bool mainMenu = true;
+            bool gameRunning = true;
 
             Fighter fighterA = new Fighter(); //skapar 2 fighter med namn input
             Thread.Sleep(27);
             Fighter fighterB = new Fighter();
 
             var keyRead = Console.ReadKey(true).Key;
-
-            while (mainMenu)
+            while (gameRunning)
             {
-                MainMenu();
+                while (mainMenu)
+                {
+                    MainMenu();
 
-                keyRead = Console.ReadKey(true).Key;
-                if (keyRead == ConsoleKey.D1)
-                {
-                    fighterA.Present();
-                }
-                if (keyRead == ConsoleKey.D2)
-                {
-                    fighterB.Present();
-                }
-                if (keyRead == ConsoleKey.D3)
-                {
-                    mainMenu = false;
-                    fighting = true; //sätt igång while loopen med fight koden
-                }
-            }
-            while (fighting)
-            {
-                if (fighterA.IsAlive() && fighterB.IsAlive())  //när båda lever
-                {
-                    StanceOptions();
                     keyRead = Console.ReadKey(true).Key;
                     if (keyRead == ConsoleKey.D1)
                     {
-                        fighterA.DefensiveStance();
+                        fighterA.Present();
                     }
-                    else if (keyRead == ConsoleKey.D2)
+                    if (keyRead == ConsoleKey.D2)
                     {
-                        fighterA.OffensiveStance();
+                        fighterB.Present();
                     }
-
-                    AttackOptions();
-                    keyRead = Console.ReadKey(true).Key;
-                    if (keyRead == ConsoleKey.D1)
+                    if (keyRead == ConsoleKey.D3)
                     {
-                        fighterB.Hurt(fighterA.LightAttack(fighterB.armor)); //light attack faktorerar in armor
+                        mainMenu = false;
+                        fighting = true; //sätt igång while loopen med fight koden
                     }
-                    else if (keyRead == ConsoleKey.D2)
-                    {
-                        fighterB.Hurt(fighterA.HeavyAttack(fighterB.armor)); //heavy attack faktorerar in armor
-                    }
-
-                    if (fighterB.GenRandom(0, 1) == 0)
-                    {
-                        fighterA.Hurt(fighterB.LightAttack(fighterA.armor));
-                    }
-                    else
-                    {
-                        fighterA.Hurt(fighterB.HeavyAttack(fighterA.armor));
-                    }
-                    //Console.Clear();
-                    Console.WriteLine(fighterA.name + "'s HP: " + fighterA.GetHp());  //Skriv ut deras hp
-                    Console.WriteLine(fighterB.name + "'s HP: " + fighterB.GetHp());
-                    Console.WriteLine("___________________");
                 }
-                else if (!fighterA.IsAlive() || !fighterB.IsAlive()) //Om någon är död
+                while (fighting)
                 {
-                    if (fighterA.IsAlive())
+                    if (fighterA.IsAlive() && fighterB.IsAlive())  //när båda lever
                     {
-                        Console.WriteLine(fighterA.name + " WINS!");
-                        fighterA.ReceiveXP(); //få xp om du vinner
+                        StanceOptions();
+                        keyRead = Console.ReadKey(true).Key;
+                        if (keyRead == ConsoleKey.D1)
+                        {
+                            fighterA.DefensiveStance();
+                        }
+                        else if (keyRead == ConsoleKey.D2)
+                        {
+                            fighterA.OffensiveStance();
+                        }
+
+                        AttackOptions();
+                        keyRead = Console.ReadKey(true).Key;
+                        if (keyRead == ConsoleKey.D1)
+                        {
+                            fighterB.Hurt(fighterA.LightAttack(fighterB.armor)); //light attack faktorerar in armor
+                        }
+                        else if (keyRead == ConsoleKey.D2)
+                        {
+                            fighterB.Hurt(fighterA.HeavyAttack(fighterB.armor)); //heavy attack faktorerar in armor
+                        }
+
+                        if (fighterB.GenRandom(0, 1) == 0) // 50/50 stance för enemy
+                        {
+                            fighterB.OffensiveStance();
+                        }
+                        else
+                        {
+                            fighterB.DefensiveStance();
+                        }
+                        if (fighterB.GenRandom(0, 1) == 0) //50/50 vilken attack för enemy
+                        {
+                            fighterA.Hurt(fighterB.LightAttack(fighterA.armor));
+                        }
+                        else
+                        {
+                            fighterA.Hurt(fighterB.HeavyAttack(fighterA.armor));
+                        }
+                        //Console.Clear();
+                        Console.WriteLine(fighterA.name + "'s HP: " + fighterA.GetHp());  //Skriv ut deras hp
+                        Console.WriteLine(fighterB.name + "'s HP: " + fighterB.GetHp());
+                        Console.WriteLine("___________________");
                     }
-                    else
+                    else if (!fighterA.IsAlive() || !fighterB.IsAlive()) //Om någon är död
                     {
-                        Console.WriteLine(fighterB.name + " WINS");
+                        if (fighterA.IsAlive())
+                        {
+                            Console.WriteLine(fighterA.name + " WINS!");
+                            fighterA.ReceiveXP(); //få xp om du vinner
+                        }
+                        else
+                        {
+                            Console.WriteLine(fighterB.name + " WINS");
+                        }
+                        fighterB.ResetHP();
+                        fighterA.ResetHP();
+                        Console.WriteLine("\nPress enter to return to main menu");
+                        Console.ReadLine(); Console.Clear();
+                        fighting = false;
+                        mainMenu = true;
                     }
-                    fighting = false;
                 }
             }
-
-            Console.ReadLine();
         }
 
         private static void MainMenu()

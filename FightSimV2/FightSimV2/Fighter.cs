@@ -28,8 +28,11 @@ namespace FightSimV2
                 maxDmg -= 40;
                 offStance = false;
             }
-            armor += 2;
-            defStance = true;
+            else if (!defStance)
+            {
+                armor += 2;
+                defStance = true;
+            }
         }
         public void OffensiveStance()
         {
@@ -38,9 +41,12 @@ namespace FightSimV2
                 armor -= 2;
                 defStance = false;
             }
-            minDmg += 20;
-            maxDmg += 40;
-            offStance = true;
+            else if (!offStance)
+            {
+                minDmg += 20;
+                maxDmg += 40;
+                offStance = true;
+            }
         }
         public virtual int LightAttack(int enemyArmor)
         {
@@ -107,12 +113,25 @@ namespace FightSimV2
             Console.WriteLine("Name: " + name);
             Console.WriteLine("\nHP: " + hp);
             Console.WriteLine("XP: " + xp);
+            Console.WriteLine("Current Stance: " + GetStance());
             Console.WriteLine("Armor rating: " + armor);
             Console.WriteLine("Min/Max Damage: " + minDmg + "-" + maxDmg);
         }
         public void ResetHP()
         {
             hp = maxHP;
+        }
+        public string GetStance()
+        {
+            if (offStance)
+            {
+                return "Offensive";
+            }
+            else if (defStance)
+            {
+                return "Defensive";
+            }
+            else return "";
         }
     }
 }

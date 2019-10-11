@@ -10,6 +10,7 @@ namespace FightSimV2
     {
         public Goblin()
         {
+            ResetHP();
             hp -= 200;
             maxDmg += 20;
         }
