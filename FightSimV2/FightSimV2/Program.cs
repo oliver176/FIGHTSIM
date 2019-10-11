@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 
 namespace FightSimV2
 {
@@ -12,10 +11,11 @@ namespace FightSimV2
             bool gameRunning = true;
 
             Fighter fighterA = new Fighter(); //skapar 2 fighter med namn input
-            Thread.Sleep(27);
-            Fighter fighterB = new Fighter();
 
             var keyRead = Console.ReadKey(true).Key;
+
+            Fighter fighterB = new Fighter();
+
             while (gameRunning)
             {
                 while (mainMenu)
