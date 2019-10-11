@@ -8,12 +8,14 @@ namespace FightSimV2
 {
     class Zombie : Creature
     {
+        int zombieHP = 2000;
+
         public Zombie()
         {
             ResetHP();
             SetName("Zombie");
-            hp += 1000;
-            minDmg -= 20;
+            hp = zombieHP;
+            Mace();
 
         }
         public override int LightAttack(int enemyArmor)

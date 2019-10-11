@@ -8,16 +8,18 @@ namespace FightSimV2
 {
     class Goblin : Creature
     {
+        int goblinHP = 800;
+
         public Goblin()
         {
             ResetHP();
             SetName("Goblin");
-            hp -= 200;
-            maxDmg += 20;
+            hp = goblinHP;
+            Sword();
         }
         public override int LightAttack(int enemyArmor)
         {
-            hitChance = GenRandom(33, 100);
+            hitChance = GenRandom(minHitChance, maxHitChance);
             if (hitChance > 33)
             {
                 dmg = GenRandom(minDmg, maxDmg);
@@ -27,7 +29,7 @@ namespace FightSimV2
         }
         public override int HeavyAttack(int enemyArmor)
         {
-            hitChance = GenRandom(1, 90);
+            hitChance = GenRandom(minHitChance, maxHitChance);
             if (hitChance > 66)
             {
                 dmg = GenRandom(minDmg, maxDmg);

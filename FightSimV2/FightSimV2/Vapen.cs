@@ -11,14 +11,29 @@ namespace FightSimV2
         protected int minDmg = 50;
         protected int maxDmg = 100;
         protected int hitChance;
+        protected int minHitChance;
+        protected int maxHitChance;
 
-        public void Mace()
+        public void Mace()  // olika vapen att välja mellan
         {
-
+            minDmg -= 20;
+            maxDmg += 20;
+            minHitChance = 0;
+            maxHitChance = 85;
         }
         public void Sword()
         {
-
+            minDmg += 20;
+            maxDmg -= 20;
+            minHitChance = 15;
+            maxHitChance = 100;
+        }
+        public void Pike()
+        {
+            minDmg -= 10;
+            maxDmg -= 10;
+            minHitChance = 33;
+            maxHitChance = 100;
         }
     }
 }
