@@ -14,6 +14,7 @@ namespace FightSimV2
         protected int maxHP;
         protected int level = 1;
         int xp = 0;
+        protected int xpRequired = 100;
         string name;
         bool defStance = false;
         bool offStance = false;
@@ -133,9 +134,10 @@ namespace FightSimV2
         }
         private void CheckXP()
         {
-            if (xp >= 10)
+            if (xp >= xpRequired)
             {
                 level++;
+                xpRequired += 50;
                 xp = 0;
             }
         }
@@ -145,7 +147,7 @@ namespace FightSimV2
         }
         public void ReceiveXP()
         {
-            xp += 25;
+            xp += 50;
             CheckXP();
         }
         public virtual void ModifyStats()

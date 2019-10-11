@@ -14,7 +14,7 @@ namespace FightSimV2
         protected int minHitChance;
         protected int maxHitChance;
         protected int statModifier = 1;
-        protected string weaponName;
+        protected string weaponName = "";
 
         public void Mace()  // olika vapen att välja mellan
         {
@@ -42,7 +42,11 @@ namespace FightSimV2
         }
         protected string GetWeapon()
         {
-            return weaponName;
+            if (weaponName == "")
+            {
+                return "None";
+            }
+            else return weaponName + " " + minDmg + "-" + maxDmg;
         }
     }
 }

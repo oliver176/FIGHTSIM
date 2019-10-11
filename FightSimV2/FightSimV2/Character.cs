@@ -17,11 +17,10 @@ namespace FightSimV2
             Console.WriteLine("Name: " + GetName());
             Console.WriteLine("\nHP: " + hp);
             Console.WriteLine("Equipped Weapon: " + GetWeapon());
-            Console.WriteLine("XP: " + GetXP());
+            Console.WriteLine("XP: " + GetXP() + "/" + xpRequired);
             Console.WriteLine("Level: " + level);
             Console.WriteLine("Current Stance: " + GetStance());
             Console.WriteLine("Armor rating: " + armor);
-            Console.WriteLine("Min/Max Damage: " + minDmg + "-" + maxDmg);
         }
 
         public override void ModifyStats()
