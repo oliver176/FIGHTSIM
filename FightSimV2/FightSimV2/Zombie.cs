@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace FightSimV2
 {
-    class Zombie : Fighter
+    class Zombie : Creature
     {
         public Zombie()
         {
             ResetHP();
+            SetName("Zombie");
             hp += 1000;
             minDmg -= 20;
 

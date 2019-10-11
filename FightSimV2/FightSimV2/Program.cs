@@ -10,11 +10,11 @@ namespace FightSimV2
             bool mainMenu = true;
             bool gameRunning = true;
 
-            Fighter fighterA = new Fighter(); //skapar 2 fighter med namn input
+            Character fighterA = new Character(); //skapar en character//spelaren
 
             var keyRead = Console.ReadKey(true).Key;
 
-            Fighter fighterB = new Fighter();
+            Creature fighterB = new Creature();  //skapar en creature
 
             while (gameRunning)
             {

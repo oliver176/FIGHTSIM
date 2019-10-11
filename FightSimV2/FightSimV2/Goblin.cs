@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace FightSimV2
 {
-    class Goblin : Fighter
+    class Goblin : Creature
     {
         public Goblin()
         {
             ResetHP();
+            SetName("Goblin");
             hp -= 200;
             maxDmg += 20;
         }

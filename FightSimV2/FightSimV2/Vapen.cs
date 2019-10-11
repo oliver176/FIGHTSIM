@@ -6,9 +6,19 @@ using System.Threading.Tasks;
 
 namespace FightSimV2
 {
-    class Vapen : Creature
+    class Vapen
     {
         protected int minDmg = 50;
         protected int maxDmg = 100;
+        protected int hitChance;
+
+        public void Mace()
+        {
+
+        }
+        public void Sword()
+        {
+
+        }
     }
 }
