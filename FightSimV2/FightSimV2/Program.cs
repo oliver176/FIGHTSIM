@@ -80,20 +80,20 @@ namespace FightSimV2
                             fighterA.Hurt(fighterB.HeavyAttack(fighterA.armor));
                         }
                         //Console.Clear();
-                        Console.WriteLine(fighterA.name + "'s HP: " + fighterA.GetHp());  //Skriv ut deras hp
-                        Console.WriteLine(fighterB.name + "'s HP: " + fighterB.GetHp());
+                        Console.WriteLine(fighterA.GetName() + "'s HP: " + fighterA.GetHp());  //Skriv ut deras hp
+                        Console.WriteLine(fighterB.GetName() + "'s HP: " + fighterB.GetHp());
                         Console.WriteLine("___________________");
                     }
                     else if (!fighterA.IsAlive() || !fighterB.IsAlive()) //Om någon är död
                     {
                         if (fighterA.IsAlive())
                         {
-                            Console.WriteLine(fighterA.name + " WINS!");
+                            Console.WriteLine(fighterA.GetName() + " WINS!");
                             fighterA.ReceiveXP(); //få xp om du vinner
                         }
                         else
                         {
-                            Console.WriteLine(fighterB.name + " WINS");
+                            Console.WriteLine(fighterB.GetName() + " WINS");
                         }
                         fighterB.ResetHP();
                         fighterA.ResetHP();

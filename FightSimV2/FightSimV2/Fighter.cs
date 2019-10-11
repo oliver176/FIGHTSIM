@@ -11,14 +11,12 @@ namespace FightSimV2
         bool defStance = false;
         bool offStance = false;
         int xp = 0;
-        public string name;
 
         public Fighter()   //input för namn
         {
             maxHP = 1000;
             armor = GenRandom(1, 5);
             hp = maxHP;
-            name = Names();
         }
         public void DefensiveStance()
         {
@@ -95,17 +93,6 @@ namespace FightSimV2
         public void ReceiveXP()
         {
             xp += 25;
-        }
-        public string Names()
-        {
-            List<string> nameList = new List<string>(new string[] {"Oliver", "Eric", "Vladivostok", "Gaston", "Muntop", "Doc", "Marley", "Heehoo"});
-            return nameList[GenRandom(0, nameList.Count - 1)];  //returnerar random namn från string listan
-        }
-        public int GenRandom(int min, int max)
-        {
-            
-            Random gen = new Random();
-            return gen.Next(min, max);
         }
         public void Present()
         {
