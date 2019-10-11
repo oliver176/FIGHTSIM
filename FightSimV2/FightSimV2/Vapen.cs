@@ -13,27 +13,36 @@ namespace FightSimV2
         protected int hitChance;
         protected int minHitChance;
         protected int maxHitChance;
+        protected int statModifier = 1;
+        protected string weaponName;
 
         public void Mace()  // olika vapen att välja mellan
         {
-            minDmg -= 20;
-            maxDmg += 20;
+            minDmg -= 30 * statModifier;
+            maxDmg += 20 * statModifier;
             minHitChance = 0;
             maxHitChance = 85;
+            weaponName = "Mace";
         }
         public void Sword()
         {
-            minDmg += 20;
-            maxDmg -= 20;
+            minDmg += 20 * statModifier;
+            maxDmg -= 20 * statModifier;
             minHitChance = 15;
             maxHitChance = 100;
+            weaponName = "Sword";
         }
         public void Pike()
         {
-            minDmg -= 10;
-            maxDmg -= 10;
-            minHitChance = 33;
+            minDmg -= 10 * statModifier;
+            maxDmg -= 10 * statModifier;
+            minHitChance = 99;
             maxHitChance = 100;
+            weaponName = "Pike";
+        }
+        protected string GetWeapon()
+        {
+            return weaponName;
         }
     }
 }

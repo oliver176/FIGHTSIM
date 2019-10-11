@@ -12,6 +12,8 @@ namespace FightSimV2
         protected int hp;
         protected int dmg;
         protected int maxHP;
+        protected int level = 1;
+        int xp = 0;
         string name;
         bool defStance = false;
         bool offStance = false;
@@ -26,12 +28,6 @@ namespace FightSimV2
             //Läser alla rader från text filen
             string[] nameArray = File.ReadAllLines(@"C:\Users\oliver.sagefors\Documents\GitHub\FIGHTSIM\FightSimV2\FightSimV2\ListOfNames.txt", Encoding.UTF8);
             return nameArray[GenRandom(0, nameArray.Length - 1)]; //returnerar random namn från text filen
-        }
-        public int GenRandom(int min, int max)
-        {
-
-            Random gen = new Random();
-            return gen.Next(min, max);
         }
         public string GetName()
         {
@@ -48,22 +44,6 @@ namespace FightSimV2
         public void Hurt(int amount)
         {
             hp -= amount;   //ta dmg amount
-        }
-        public bool IsAlive()
-        {
-            if (hp > 0) //om den lever return true
-            {
-                return true;
-            }
-            else return false;
-        }
-        public int GetHp()
-        {
-            if (hp < 0)
-            {
-                hp = 0;
-            }
-            return hp;
         }
         public void DefensiveStance()
         {
@@ -93,9 +73,21 @@ namespace FightSimV2
                 offStance = true;
             }
         }
+        public string GetStance()
+        {
+            if (offStance)
+            {
+                return "Offensive";
+            }
+            else if (defStance)
+            {
+                return "Defensive";
+            }
+            else return "";
+        }
         public virtual int LightAttack(int enemyArmor)
         {
-            hitChance = GenRandom(1, 100);
+            hitChance = GenRandom(minHitChance, maxHitChance);
             if (hitChance > 33)
             {
                 dmg = GenRandom(minDmg, maxDmg);
@@ -105,7 +97,7 @@ namespace FightSimV2
         }
         public virtual int HeavyAttack(int enemyArmor)
         {
-            hitChance = GenRandom(1, 100);
+            hitChance = GenRandom(minHitChance, maxHitChance);
             if (hitChance > 66)
             {
                 dmg = GenRandom(minDmg, maxDmg);
@@ -118,25 +110,57 @@ namespace FightSimV2
             Console.Clear();
             Console.WriteLine("Name: " + GetName());
             Console.WriteLine("\nHP: " + hp);
+            Console.WriteLine("Equipped Weapon: " + GetWeapon());
             Console.WriteLine("Current Stance: " + GetStance());
             Console.WriteLine("Armor rating: " + armor);
             Console.WriteLine("Min/Max Damage: " + minDmg + "-" + maxDmg);
         }
-        public void ResetHP()
+        public bool IsAlive()
         {
-            hp = maxHP;
+            if (hp > 0) //om den lever return true
+            {
+                return true;
+            }
+            else return false;
         }
-        public string GetStance()
+        public int GetHp()
         {
-            if (offStance)
+            if (hp < 0)
             {
-                return "Offensive";
+                hp = 0;
             }
-            else if (defStance)
+            return hp;
+        }
+        private void CheckXP()
+        {
+            if (xp >= 10)
             {
-                return "Defensive";
+                level++;
+                xp = 0;
             }
-            else return "";
+        }
+        protected int GetXP()
+        {
+            return xp;
+        }
+        public void ReceiveXP()
+        {
+            xp += 25;
+            CheckXP();
+        }
+        public virtual void ModifyStats()
+        {
+            statModifier = level; //Improve stats beroende på lvl
+            hp = maxHP * statModifier;
+            armor *= statModifier;
+            minDmg *= statModifier;
+            maxDmg *= statModifier;
+        }
+        public int GenRandom(int min, int max)
+        {
+
+            Random gen = new Random();
+            return gen.Next(min, max);
         }
     }
 }

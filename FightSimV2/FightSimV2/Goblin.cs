@@ -1,32 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FightSimV2
+﻿namespace FightSimV2
 {
-    class Goblin : Creature
+    internal class Goblin : Creature
     {
-        int goblinHP = 800;
+        private int goblinArmor = 2;
 
         public Goblin()
         {
-            ResetHP();
+            maxHP = 800 * statModifier;
             SetName("Goblin");
-            hp = goblinHP;
+            hp = maxHP * statModifier;
+            armor = goblinArmor;
             Sword();
         }
+
+        public override void ModifyStats()
+        {
+            statModifier = level; //Improve stats beroende på lvl
+            hp = maxHP * statModifier;
+            armor *= statModifier;
+            minDmg *= statModifier;
+            maxDmg *= statModifier;
+        }
+
         public override int LightAttack(int enemyArmor)
         {
             hitChance = GenRandom(minHitChance, maxHitChance);
-            if (hitChance > 33)
+            if (hitChance > 20)
             {
                 dmg = GenRandom(minDmg, maxDmg);
                 return dmg / enemyArmor;
             }
             else return 0;
         }
+
         public override int HeavyAttack(int enemyArmor)
         {
             hitChance = GenRandom(minHitChance, maxHitChance);

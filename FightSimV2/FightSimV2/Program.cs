@@ -9,12 +9,13 @@ namespace FightSimV2
             bool fighting = false;
             bool mainMenu = true;
             bool gameRunning = true;
+            bool weaponEquipped = false;
 
             Character fighterA = new Character(); //skapar en character//spelaren
 
             var keyRead = Console.ReadKey(true).Key;
 
-            Creature fighterB = new Creature();  //skapar en creature
+            Zombie fighterB = new Zombie();  //skapar en creature
 
             while (gameRunning)
             {
@@ -39,6 +40,25 @@ namespace FightSimV2
                 }
                 while (fighting)
                 {
+                    while (!weaponEquipped)
+                    {
+                        WeaponOptions();
+                        if (keyRead == ConsoleKey.D1)
+                        {
+                            fighterA.Mace();
+                            weaponEquipped = true;
+                        }
+                        if (keyRead == ConsoleKey.D2)
+                        {
+                            fighterA.Sword();
+                            weaponEquipped = true;
+                        }
+                        if (keyRead == ConsoleKey.D3)
+                        {
+                            fighterA.Pike();
+                            weaponEquipped = true;
+                        }
+                    }
                     if (fighterA.IsAlive() && fighterB.IsAlive())  //när båda lever
                     {
                         StanceOptions();
@@ -89,14 +109,16 @@ namespace FightSimV2
                         if (fighterA.IsAlive())
                         {
                             Console.WriteLine(fighterA.GetName() + " WINS!");
-                            fighterA.ReceiveXP(); //få xp om du vinner
+                            fighterA.ReceiveXP(); //få xp om du vinner samt kolla om du lvlar
+                            fighterB.ReceiveXP(); //så att enemy kommer att skala med playern
                         }
                         else
                         {
                             Console.WriteLine(fighterB.GetName() + " WINS");
                         }
-                        fighterB.ResetHP();
-                        fighterA.ResetHP();
+                        
+                        fighterA.ModifyStats();
+                        fighterB.ModifyStats();
                         Console.WriteLine("\nPress enter to return to main menu");
                         Console.ReadLine(); Console.Clear();
                         fighting = false;
@@ -113,6 +135,13 @@ namespace FightSimV2
             Console.WriteLine("2: Present Opponent");
             Console.WriteLine("3: Start Fighting");
             Console.WriteLine();
+        }
+        private static void WeaponOptions()
+        {
+            Console.WriteLine("Pick a weapon!\n");
+            Console.WriteLine("1: Mace");
+            Console.WriteLine("2: Sword");
+            Console.WriteLine("3: Pike");
         }
 
         private static void StanceOptions()

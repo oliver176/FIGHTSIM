@@ -1,23 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FightSimV2
+﻿namespace FightSimV2
 {
-    class Zombie : Creature
+    internal class Zombie : Creature
     {
-        int zombieHP = 2000;
+        private int zombieArmor = 1;
 
         public Zombie()
         {
-            ResetHP();
+            maxHP = 2000 * statModifier;
             SetName("Zombie");
-            hp = zombieHP;
+            hp = maxHP;
+            armor = zombieArmor;
             Mace();
-
         }
+
+        public override void ModifyStats()
+        {
+            statModifier = level; //Improve stats beroende på lvl
+            hp = maxHP * statModifier;
+            armor *= statModifier;
+            minDmg *= statModifier;
+            maxDmg *= statModifier;
+        }
+
         public override int LightAttack(int enemyArmor)
         {
             hitChance = GenRandom(20, 80);
@@ -28,6 +32,7 @@ namespace FightSimV2
             }
             else return 0;
         }
+
         public override int HeavyAttack(int enemyArmor)
         {
             hitChance = GenRandom(20, 80);
