@@ -42,7 +42,7 @@ namespace FightSimV2
             maxDmg += 40;
             offStance = true;
         }
-        public int LightAttack(int enemyArmor)
+        public virtual int LightAttack(int enemyArmor)
         {
             hitChance = GenRandom(1, 100);
             if (hitChance > 33)
@@ -52,10 +52,10 @@ namespace FightSimV2
             }
             else return 0;
         }
-        public int HeavyAttack(int enemyArmor)
+        public virtual int HeavyAttack(int enemyArmor)
         {
-            hitChance = GenRandom(1, 75);
-            if (hitChance > 33)
+            hitChance = GenRandom(1, 100);
+            if (hitChance > 66)
             {
                 dmg = GenRandom(minDmg, maxDmg);
                 return (dmg / enemyArmor) + minDmg;

@@ -10,8 +10,28 @@ namespace FightSimV2
     {
         public Goblin()
         {
-            hp -= 100;
+            hp -= 200;
             maxDmg += 20;
+        }
+        public override int LightAttack(int enemyArmor)
+        {
+            hitChance = GenRandom(33, 100);
+            if (hitChance > 33)
+            {
+                dmg = GenRandom(minDmg, maxDmg);
+                return dmg / enemyArmor;
+            }
+            else return 0;
+        }
+        public override int HeavyAttack(int enemyArmor)
+        {
+            hitChance = GenRandom(1, 90);
+            if (hitChance > 66)
+            {
+                dmg = GenRandom(minDmg, maxDmg);
+                return (dmg / enemyArmor) + minDmg;
+            }
+            else return 0;
         }
     }
 }
