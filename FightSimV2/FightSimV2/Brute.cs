@@ -11,6 +11,7 @@ namespace FightSimV2
         int bruteArmor = 5;
         public Brute()
         {
+            className = "Brute";
             maxHP = 1500 * statModifier;
             hp = maxHP * statModifier;
             armor = bruteArmor;

@@ -11,6 +11,7 @@ namespace FightSimV2
         int assasinArmor = 1;
         public Assasin()
         {
+            className = "Assasin";
             maxHP = 750 * statModifier;
             hp = maxHP * statModifier;
             armor = assasinArmor;

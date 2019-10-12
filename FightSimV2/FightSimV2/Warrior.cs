@@ -11,6 +11,7 @@ namespace FightSimV2
         int warriorArmor = 3;
         public Warrior()
         {
+            className = "Warrior";
             maxHP = 1000 * statModifier;
             hp = maxHP * statModifier;
             armor = warriorArmor;

@@ -4,6 +4,7 @@ namespace FightSimV2
 {
     internal class Character : Creature
     {
+        protected string className;
         public Character()
         {
             maxHP = 5000 * statModifier;
@@ -18,7 +19,7 @@ namespace FightSimV2
             Console.WriteLine("\nHP: " + hp);
             Console.WriteLine("Equipped Weapon: " + GetWeapon());
             Console.WriteLine("XP: " + GetXP() + "/" + xpRequired);
-            Console.WriteLine("Level: " + level);
+            Console.WriteLine("Lvl " + level + " " + className);
             Console.WriteLine("Current Stance: " + GetStance());
             Console.WriteLine("Armor rating: " + armor);
         }
