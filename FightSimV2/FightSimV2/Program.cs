@@ -37,28 +37,33 @@ namespace FightSimV2
                         mainMenu = false;
                         fighting = true; //sätt igång while loopen med fight koden
                     }
+                    if (keyRead == ConsoleKey.D4)
+                    {
+                        weaponEquipped = false;
+                        while (weaponEquipped == false)
+                        {
+                            WeaponOptions();
+                            string input = Console.ReadLine();
+                            if (input == "1")
+                            {
+                                fighterA.Mace();
+                                weaponEquipped = true;
+                            }
+                            if (input == "2")
+                            {
+                                fighterA.Sword();
+                                weaponEquipped = true;
+                            }
+                            if (input == "3")
+                            {
+                                fighterA.Pike();
+                                weaponEquipped = true;
+                            }
+                        }
+                    }
                 }
                 while (fighting)
                 {
-                    while (!weaponEquipped)
-                    {
-                        WeaponOptions();
-                        if (keyRead == ConsoleKey.D1)
-                        {
-                            fighterA.Mace();
-                            weaponEquipped = true;
-                        }
-                        if (keyRead == ConsoleKey.D2)
-                        {
-                            fighterA.Sword();
-                            weaponEquipped = true;
-                        }
-                        if (keyRead == ConsoleKey.D3)
-                        {
-                            fighterA.Pike();
-                            weaponEquipped = true;
-                        }
-                    }
                     if (fighterA.IsAlive() && fighterB.IsAlive())  //när båda lever
                     {
                         StanceOptions();
@@ -116,7 +121,7 @@ namespace FightSimV2
                         {
                             Console.WriteLine(fighterB.GetName() + " WINS");
                         }
-                        
+
                         fighterA.ModifyStats();
                         fighterB.ModifyStats();
                         Console.WriteLine("\nPress enter to return to main menu");
@@ -134,10 +139,13 @@ namespace FightSimV2
             Console.WriteLine("1: Present Character");
             Console.WriteLine("2: Present Opponent");
             Console.WriteLine("3: Start Fighting");
+            Console.WriteLine("4: Pick Weapon");
             Console.WriteLine();
         }
+
         private static void WeaponOptions()
         {
+            Console.Clear();
             Console.WriteLine("Pick a weapon!\n");
             Console.WriteLine("1: Mace");
             Console.WriteLine("2: Sword");
