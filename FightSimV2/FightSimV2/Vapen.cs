@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FightSimV2
 {
-    class Vapen
+    internal class Vapen
     {
         protected int minDmg = 50;
         protected int maxDmg = 100;
@@ -15,9 +12,18 @@ namespace FightSimV2
         protected int maxHitChance;
         protected int statModifier = 1;
         protected string weaponName = "";
+        public List<Action> weapons = new List<Action>();
 
         public Vapen()
         {
+            weapons.Add(Mace);
+            weapons.Add(Sword);
+            weapons.Add(Pike);
+            weapons.Add(Dagger);
+        }
+        public int GetWeapons()
+        {
+            return weapons.Count;
         }
         public void Mace()  // olika vapen att välja mellan
         {
@@ -27,6 +33,7 @@ namespace FightSimV2
             maxHitChance = 85;
             weaponName = "Mace";
         }
+
         public void Sword()
         {
             minDmg += 20 * statModifier;
@@ -35,6 +42,7 @@ namespace FightSimV2
             maxHitChance = 100;
             weaponName = "Sword";
         }
+
         public void Pike()
         {
             minDmg -= 10 * statModifier;
@@ -43,6 +51,7 @@ namespace FightSimV2
             maxHitChance = 100;
             weaponName = "Pike";
         }
+
         public void Dagger()
         {
             minDmg -= 10 * statModifier;
@@ -51,6 +60,7 @@ namespace FightSimV2
             maxHitChance = 100;
             weaponName = "Pike";
         }
+
         protected string GetWeapon()
         {
             if (weaponName == "")
@@ -59,9 +69,9 @@ namespace FightSimV2
             }
             else return weaponName + " " + minDmg + "-" + maxDmg;
         }
+
         public int GenRandom(int min, int max)
         {
-
             Random gen = new Random();
             return gen.Next(min, max);
         }

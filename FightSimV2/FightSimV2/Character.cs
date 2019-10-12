@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FightSimV2
 {
     internal class Character : Creature
     {
         protected string className;
+        public List<string> inventoryList = new List<string>();
 
         public Character()
         {

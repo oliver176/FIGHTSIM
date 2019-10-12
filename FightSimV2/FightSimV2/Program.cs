@@ -20,28 +20,32 @@ namespace FightSimV2
                 while (classMenu == false)
                 {
                     classMenu = false;
-                    ClassOptions();
+                    ClassOptions(); //skriver ut alternativ
+
                     keyRead = Console.ReadKey(true).Key;
                     if (keyRead == ConsoleKey.D1)
                     {
                         fighterA = new Brute();
+                        fighterA.inventoryList.Add("Mace");
                         classMenu = true;
                     }
                     if (keyRead == ConsoleKey.D2)
                     {
                         fighterA = new Warrior();
+                        fighterA.inventoryList.Add("Sword");
                         classMenu = true;
                     }
                     if (keyRead == ConsoleKey.D3)
                     {
                         fighterA = new Assasin();
+                        fighterA.inventoryList.Add("Dagger");
                         classMenu = true;
                     }
                     Console.Clear();
                 }
                 while (mainMenu)
                 {
-                    MainMenu();
+                    MainMenu(); //skriver ut alternativ
 
                     keyRead = Console.ReadKey(true).Key;
                     if (keyRead == ConsoleKey.D1)
@@ -57,6 +61,18 @@ namespace FightSimV2
                         mainMenu = false;
                         fighting = true; //sätt igång while loopen med fight koden
                         Console.Clear();
+                    }
+                    if (keyRead == ConsoleKey.D4)
+                    {
+                        for (int i = 0; i < fighterA.GetWeapons(); i++)
+                        {
+                            if (i >= fighterA.inventoryList.Count)
+                            {
+                                break;
+                            }
+                            Console.WriteLine("___________________");
+                            Console.WriteLine((i + 1) + ": " + fighterA.inventoryList[i]);
+                        }
                     }
                 }
                 while (fighting)
@@ -114,6 +130,25 @@ namespace FightSimV2
                             fighterA.ReceiveXP(); //få xp om du vinner samt kolla om du lvlar
                             fighterB.ReceiveXP(); //så att enemy kommer att skala med playern
                             fighterB = new Goblin();
+
+                            switch (fighterA.GenRandom(1, fighterA.weapons.Count + 1))  //random gen alla wep som finns
+                            {
+                                case 1:
+                                    fighterA.inventoryList.Add("Mace");
+                                    break;
+
+                                case 2:
+                                    fighterA.inventoryList.Add("Sword");
+                                    break;
+
+                                case 3:
+                                    fighterA.inventoryList.Add("Dagger");
+                                    break;
+
+                                case 4:
+                                    fighterA.inventoryList.Add("Pike");
+                                    break;
+                            }
                         }
                         else
                         {
@@ -124,8 +159,7 @@ namespace FightSimV2
                         fighterB.ModifyStats(fighterA.GetLevel());
                         Console.WriteLine("\nPress enter to return to main menu");
                         Console.ReadLine(); Console.Clear();
-                        fighting = false;
-                        mainMenu = true;
+                        fighting = false; mainMenu = true;
                     }
                 }
             }
@@ -133,12 +167,10 @@ namespace FightSimV2
 
         private static void MainMenu()
         {
-            Console.WriteLine();
-            Console.WriteLine("1: Present Character");
+            Console.WriteLine("\n1: Present Character");
             Console.WriteLine("2: Present Opponent");
             Console.WriteLine("3: Start Fighting");
-            Console.WriteLine("4: Pick Weapon");
-            Console.WriteLine();
+            Console.WriteLine("4: Show Inventory\n");
         }
 
         private static void WeaponOptions()
