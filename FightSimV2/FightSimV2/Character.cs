@@ -22,6 +22,7 @@ namespace FightSimV2
             Console.WriteLine("Armor rating: " + armor);
             Console.WriteLine("Equipped Weapon: " + GetWeapon() + " Damage");
             Console.WriteLine("Current Stance: " + GetStance());
+            Console.WriteLine("____________________________________");
         }
 
         public override void ModifyStats()

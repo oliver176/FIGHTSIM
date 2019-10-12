@@ -10,10 +10,9 @@ namespace FightSimV2
             bool mainMenu = true;
             bool gameRunning = true;
             bool classMenu = false;
-            bool weaponEquipped = false;
-
-            Character fighterA = new Character();
             var keyRead = Console.ReadKey(true).Key;
+
+            Character fighterA = new Character(); //skapar spelaren
             Zombie fighterB = new Zombie();  //skapar en creature
 
             while (gameRunning)
@@ -22,18 +21,18 @@ namespace FightSimV2
                 {
                     classMenu = false;
                     ClassOptions();
-                    string input = Console.ReadLine();
-                    if (input == "1")
+                    keyRead = Console.ReadKey(true).Key;
+                    if (keyRead == ConsoleKey.D1)
                     {
                         fighterA = new Brute();
                         classMenu = true;
                     }
-                    if (input == "2")
+                    if (keyRead == ConsoleKey.D2)
                     {
                         fighterA = new Warrior();
                         classMenu = true;
                     }
-                    if (input == "3")
+                    if (keyRead == ConsoleKey.D3)
                     {
                         fighterA = new Assasin();
                         classMenu = true;
@@ -57,12 +56,16 @@ namespace FightSimV2
                     {
                         mainMenu = false;
                         fighting = true; //sätt igång while loopen med fight koden
+                        Console.Clear();
                     }
                 }
                 while (fighting)
                 {
                     if (fighterA.IsAlive() && fighterB.IsAlive())  //när båda lever
                     {
+                        Console.WriteLine(fighterA.GetName() + "'s HP: " + fighterA.GetHp());  //Skriv ut deras hp
+                        Console.WriteLine(fighterB.GetName() + "'s HP: " + fighterB.GetHp());
+                        Console.WriteLine("___________________");
                         StanceOptions();
                         keyRead = Console.ReadKey(true).Key;
                         if (keyRead == ConsoleKey.D1)
@@ -101,10 +104,7 @@ namespace FightSimV2
                         {
                             fighterA.Hurt(fighterB.HeavyAttack(fighterA.armor));
                         }
-                        //Console.Clear();
-                        Console.WriteLine(fighterA.GetName() + "'s HP: " + fighterA.GetHp());  //Skriv ut deras hp
-                        Console.WriteLine(fighterB.GetName() + "'s HP: " + fighterB.GetHp());
-                        Console.WriteLine("___________________");
+                        Console.Clear();
                     }
                     else if (!fighterA.IsAlive() || !fighterB.IsAlive()) //Om någon är död
                     {
@@ -160,13 +160,15 @@ namespace FightSimV2
 
         private static void StanceOptions()
         {
+            //Console.Clear();
+            Console.WriteLine("Choose Stance\n");
             Console.WriteLine("1: Defensive Stance");
             Console.WriteLine("2: Offensive Stance");
         }
 
         private static void AttackOptions()
         {
-            Console.Clear();
+            Console.WriteLine("\nChoose Attack:\n");
             Console.WriteLine("1: Light Attack");
             Console.WriteLine("2: Heavy Attack\n");
         }

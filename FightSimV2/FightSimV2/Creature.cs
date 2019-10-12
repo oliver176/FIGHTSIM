@@ -114,7 +114,8 @@ namespace FightSimV2
             Console.WriteLine("Equipped Weapon: " + GetWeapon());
             Console.WriteLine("Current Stance: " + GetStance());
             Console.WriteLine("Armor rating: " + armor);
-            Console.WriteLine("Min/Max Damage: " + minDmg + "-" + maxDmg);
+            Console.WriteLine("____________________________________");
+
         }
         public bool IsAlive()
         {
