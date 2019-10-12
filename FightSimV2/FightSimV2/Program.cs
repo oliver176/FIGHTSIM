@@ -38,6 +38,7 @@ namespace FightSimV2
                         fighterA = new Assasin();
                         classMenu = true;
                     }
+                    Console.Clear();
                 }
                 while (mainMenu)
                 {
@@ -56,9 +57,6 @@ namespace FightSimV2
                     {
                         mainMenu = false;
                         fighting = true; //sätt igång while loopen med fight koden
-                    }
-                    if (keyRead == ConsoleKey.D4)
-                    {
                     }
                 }
                 while (fighting)
