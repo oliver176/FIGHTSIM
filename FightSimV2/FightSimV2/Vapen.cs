@@ -36,6 +36,14 @@ namespace FightSimV2
         {
             minDmg -= 10 * statModifier;
             maxDmg -= 10 * statModifier;
+            minHitChance = 33;
+            maxHitChance = 100;
+            weaponName = "Pike";
+        }
+        public void Dagger()
+        {
+            minDmg -= 10 * statModifier;
+            maxDmg += 20 * statModifier;
             minHitChance = 99;
             maxHitChance = 100;
             weaponName = "Pike";

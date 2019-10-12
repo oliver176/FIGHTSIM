@@ -8,5 +8,21 @@ namespace FightSimV2
 {
     class Brute : Character
     {
+        int bruteArmor = 5;
+        public Brute()
+        {
+            maxHP = 1500 * statModifier;
+            hp = maxHP * statModifier;
+            armor = bruteArmor;
+            Sword();
+        }
+        public override void ModifyStats()
+        {
+            statModifier = level; //Improve stats beroende på lvl
+            hp = maxHP * statModifier;
+            armor *= statModifier;
+            minDmg *= statModifier;
+            maxDmg *= statModifier;
+        }
     }
 }

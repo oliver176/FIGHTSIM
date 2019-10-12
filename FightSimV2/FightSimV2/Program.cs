@@ -9,16 +9,36 @@ namespace FightSimV2
             bool fighting = false;
             bool mainMenu = true;
             bool gameRunning = true;
+            bool classMenu = false;
             bool weaponEquipped = false;
 
-            Character fighterA = new Character(); //skapar en character//spelaren
-
+            Character fighterA = new Character();
             var keyRead = Console.ReadKey(true).Key;
-
             Zombie fighterB = new Zombie();  //skapar en creature
 
             while (gameRunning)
             {
+                while (classMenu == false)
+                {
+                    classMenu = false;
+                    ClassOptions();
+                    string input = Console.ReadLine();
+                    if (input == "1")
+                    {
+                        fighterA = new Brute();
+                        classMenu = true;
+                    }
+                    if (input == "2")
+                    {
+                        fighterA = new Warrior();
+                        classMenu = true;
+                    }
+                    if (input == "3")
+                    {
+                        fighterA = new Assasin();
+                        classMenu = true;
+                    }
+                }
                 while (mainMenu)
                 {
                     MainMenu();
@@ -39,27 +59,6 @@ namespace FightSimV2
                     }
                     if (keyRead == ConsoleKey.D4)
                     {
-                        weaponEquipped = false;
-                        while (weaponEquipped == false)
-                        {
-                            WeaponOptions();
-                            string input = Console.ReadLine();
-                            if (input == "1")
-                            {
-                                fighterA.Mace();
-                                weaponEquipped = true;
-                            }
-                            if (input == "2")
-                            {
-                                fighterA.Sword();
-                                weaponEquipped = true;
-                            }
-                            if (input == "3")
-                            {
-                                fighterA.Pike();
-                                weaponEquipped = true;
-                            }
-                        }
                     }
                 }
                 while (fighting)
@@ -150,6 +149,15 @@ namespace FightSimV2
             Console.WriteLine("1: Mace");
             Console.WriteLine("2: Sword");
             Console.WriteLine("3: Pike");
+        }
+
+        private static void ClassOptions()
+        {
+            Console.Clear();
+            Console.WriteLine("Pick a class!\n");
+            Console.WriteLine("1: Brute");
+            Console.WriteLine("2: Warrior");
+            Console.WriteLine("3: Rouge");
         }
 
         private static void StanceOptions()

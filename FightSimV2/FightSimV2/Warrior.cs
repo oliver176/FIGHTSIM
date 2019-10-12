@@ -8,5 +8,21 @@ namespace FightSimV2
 {
     class Warrior : Character
     {
+        int warriorArmor = 3;
+        public Warrior()
+        {
+            maxHP = 1000 * statModifier;
+            hp = maxHP * statModifier;
+            armor = warriorArmor;
+            Sword();
+        }
+        public override void ModifyStats()
+        {
+            statModifier = level; //Improve stats beroende på lvl
+            hp = maxHP * statModifier;
+            armor *= statModifier;
+            minDmg *= statModifier;
+            maxDmg *= statModifier;
+        }
     }
 }
