@@ -24,10 +24,13 @@ namespace FightSimV2
             Console.WriteLine("Current Stance: " + GetStance());
             Console.WriteLine("____________________________________");
         }
-
-        public override void ModifyStats()
+        public int GetLevel()
         {
-            statModifier = level; //Improve stats beroende på lvl
+            return level;
+        }
+        public override void ModifyStats(int playerLevel)
+        {
+            statModifier = playerLevel; //Improve stats beroende på lvl
             hp = maxHP * statModifier;
             armor *= statModifier;
             minDmg *= statModifier;

@@ -151,19 +151,13 @@ namespace FightSimV2
             xp += 50;
             CheckXP();
         }
-        public virtual void ModifyStats()
+        public virtual void ModifyStats(int playerLevel)
         {
-            statModifier = level; //Improve stats beroende på lvl
+            statModifier = playerLevel; //Improve stats beroende på lvl
             hp = maxHP * statModifier;
             armor *= statModifier;
             minDmg *= statModifier;
             maxDmg *= statModifier;
-        }
-        public int GenRandom(int min, int max)
-        {
-
-            Random gen = new Random();
-            return gen.Next(min, max);
         }
     }
 }

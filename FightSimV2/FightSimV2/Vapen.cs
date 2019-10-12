@@ -16,6 +16,9 @@ namespace FightSimV2
         protected int statModifier = 1;
         protected string weaponName = "";
 
+        public Vapen()
+        {
+        }
         public void Mace()  // olika vapen att välja mellan
         {
             minDmg -= 30 * statModifier;
@@ -55,6 +58,12 @@ namespace FightSimV2
                 return "None";
             }
             else return weaponName + " " + minDmg + "-" + maxDmg;
+        }
+        public int GenRandom(int min, int max)
+        {
+
+            Random gen = new Random();
+            return gen.Next(min, max);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace FightSimV2
             var keyRead = Console.ReadKey(true).Key;
 
             Character fighterA = new Character(); //skapar spelaren
-            Zombie fighterB = new Zombie();  //skapar en creature
+            Creature fighterB = new Zombie();  //skapar en creature
 
             while (gameRunning)
             {
@@ -113,14 +113,15 @@ namespace FightSimV2
                             Console.WriteLine(fighterA.GetName() + " WINS!");
                             fighterA.ReceiveXP(); //få xp om du vinner samt kolla om du lvlar
                             fighterB.ReceiveXP(); //så att enemy kommer att skala med playern
+                            fighterB = new Goblin();
                         }
                         else
                         {
                             Console.WriteLine(fighterB.GetName() + " WINS");
                         }
 
-                        fighterA.ModifyStats();
-                        fighterB.ModifyStats();
+                        fighterA.ModifyStats(fighterA.GetLevel()); //skala både player och enemy stats beroende på playerns level
+                        fighterB.ModifyStats(fighterA.GetLevel());
                         Console.WriteLine("\nPress enter to return to main menu");
                         Console.ReadLine(); Console.Clear();
                         fighting = false;
@@ -160,7 +161,6 @@ namespace FightSimV2
 
         private static void StanceOptions()
         {
-            //Console.Clear();
             Console.WriteLine("Choose Stance\n");
             Console.WriteLine("1: Defensive Stance");
             Console.WriteLine("2: Offensive Stance");

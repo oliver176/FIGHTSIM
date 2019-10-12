@@ -13,9 +13,9 @@
             Sword();
         }
 
-        public override void ModifyStats()
+        public override void ModifyStats(int playerLevel)
         {
-            statModifier = level; //Improve stats beroende på lvl
+            statModifier = playerLevel; //Improve stats beroende på lvl
             hp = maxHP * statModifier;
             armor *= statModifier;
             minDmg *= statModifier;
