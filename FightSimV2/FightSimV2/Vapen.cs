@@ -12,23 +12,23 @@ namespace FightSimV2
         protected int maxHitChance;
         protected int statModifier = 1;
         protected string weaponName = "";
-        public List<Action> weapons = new List<Action>();
+        public List<Action> weaponsList = new List<Action>();
 
         public Vapen()
         {
-            weapons.Add(Mace);
-            weapons.Add(Sword);
-            weapons.Add(Pike);
-            weapons.Add(Dagger);
+            weaponsList.Add(Mace);
+            weaponsList.Add(Sword);
+            weaponsList.Add(Pike);
+            weaponsList.Add(Dagger);
         }
-        public int GetWeapons()
+        public int GetAllWeapons()
         {
-            return weapons.Count;
+            return weaponsList.Count;
         }
         public void Mace()  // olika vapen att välja mellan
         {
-            minDmg -= 30 * statModifier;
-            maxDmg += 20 * statModifier;
+            minDmg = 20 * statModifier;
+            maxDmg = 120 * statModifier;
             minHitChance = 0;
             maxHitChance = 85;
             weaponName = "Mace";
@@ -36,8 +36,8 @@ namespace FightSimV2
 
         public void Sword()
         {
-            minDmg += 20 * statModifier;
-            maxDmg -= 20 * statModifier;
+            minDmg = 70 * statModifier;
+            maxDmg = 80 * statModifier;
             minHitChance = 15;
             maxHitChance = 100;
             weaponName = "Sword";
@@ -45,8 +45,8 @@ namespace FightSimV2
 
         public void Pike()
         {
-            minDmg -= 10 * statModifier;
-            maxDmg -= 10 * statModifier;
+            minDmg = 40 * statModifier;
+            maxDmg = 90 * statModifier;
             minHitChance = 33;
             maxHitChance = 100;
             weaponName = "Pike";
@@ -54,11 +54,11 @@ namespace FightSimV2
 
         public void Dagger()
         {
-            minDmg -= 10 * statModifier;
-            maxDmg += 20 * statModifier;
-            minHitChance = 99;
+            minDmg = 40 * statModifier;
+            maxDmg = 120 * statModifier;
+            minHitChance = 50;
             maxHitChance = 100;
-            weaponName = "Pike";
+            weaponName = "Dagger";
         }
 
         protected string GetWeapon()

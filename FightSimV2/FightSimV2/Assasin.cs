@@ -15,8 +15,7 @@ namespace FightSimV2
             maxHP = 750 * statModifier;
             hp = maxHP * statModifier;
             armor = assasinArmor;
-            Sword();
-            minHitChance = 50;
+            Dagger();
         }
         public override void ModifyStats(int playerLevel)
         {

@@ -64,14 +64,93 @@ namespace FightSimV2
                     }
                     if (keyRead == ConsoleKey.D4)
                     {
-                        for (int i = 0; i < fighterA.GetWeapons(); i++)
+                        Console.Clear();
+                        Console.WriteLine("Pick a weapon to equip!");
+                        for (int i = 0; i < fighterA.GetAllWeapons(); i++)
                         {
-                            if (i >= fighterA.inventoryList.Count)
+                            if (i < fighterA.inventoryList.Count)
                             {
-                                break;
+                                Console.WriteLine("___________________");
+                                Console.WriteLine((i + 1) + ": " + fighterA.inventoryList[i]);
                             }
-                            Console.WriteLine("___________________");
-                            Console.WriteLine((i + 1) + ": " + fighterA.inventoryList[i]);
+                        }
+
+                        keyRead = Console.ReadKey(true).Key;
+                        if (keyRead == ConsoleKey.D1)
+                        {
+                            if (fighterA.inventoryList[0].Contains("Mace"))
+                            {
+                                fighterA.Mace();
+                            }
+                            if (fighterA.inventoryList[0].Contains("Sword"))
+                            {
+                                fighterA.Sword();
+                            }
+                            if (fighterA.inventoryList[0].Contains("Pike"))
+                            {
+                                fighterA.Pike();
+                            }
+                            if (fighterA.inventoryList[0].Contains("Dagger"))
+                            {
+                                fighterA.Dagger();
+                            }
+                        }
+                        else if (keyRead == ConsoleKey.D2)
+                        {
+                            if (fighterA.inventoryList[1].Contains("Mace"))
+                            {
+                                fighterA.Mace();
+                            }
+                            if (fighterA.inventoryList[1].Contains("Sword"))
+                            {
+                                fighterA.Sword();
+                            }
+                            if (fighterA.inventoryList[1].Contains("Pike"))
+                            {
+                                fighterA.Pike();
+                            }
+                            if (fighterA.inventoryList[1].Contains("Dagger"))
+                            {
+                                fighterA.Dagger();
+                            }
+                        }
+                        else if (keyRead == ConsoleKey.D3)
+                        {
+                            if (fighterA.inventoryList[2].Contains("Mace"))
+                            {
+                                fighterA.Mace();
+                            }
+                            if (fighterA.inventoryList[2].Contains("Sword"))
+                            {
+                                fighterA.Sword();
+                            }
+                            if (fighterA.inventoryList[2].Contains("Pike"))
+                            {
+                                fighterA.Pike();
+                            }
+                            if (fighterA.inventoryList[2].Contains("Dagger"))
+                            {
+                                fighterA.Dagger();
+                            }
+                        }
+                        else if (keyRead == ConsoleKey.D4)
+                        {
+                            if (fighterA.inventoryList[3].Contains("Mace"))
+                            {
+                                fighterA.Mace();
+                            }
+                            if (fighterA.inventoryList[3].Contains("Sword"))
+                            {
+                                fighterA.Sword();
+                            }
+                            if (fighterA.inventoryList[3].Contains("Pike"))
+                            {
+                                fighterA.Pike();
+                            }
+                            if (fighterA.inventoryList[3].Contains("Dagger"))
+                            {
+                                fighterA.Dagger();
+                            }
                         }
                     }
                 }
@@ -126,27 +205,42 @@ namespace FightSimV2
                     {
                         if (fighterA.IsAlive())
                         {
-                            Console.WriteLine(fighterA.GetName() + " WINS!");
+                            Console.WriteLine(fighterA.GetName() + " WINS!\n");
                             fighterA.ReceiveXP(); //få xp om du vinner samt kolla om du lvlar
                             fighterB.ReceiveXP(); //så att enemy kommer att skala med playern
                             fighterB = new Goblin();
 
-                            switch (fighterA.GenRandom(1, fighterA.weapons.Count + 1))  //random gen alla wep som finns
+                            switch (fighterA.GenRandom(1, fighterA.weaponsList.Count + 1))
                             {
                                 case 1:
-                                    fighterA.inventoryList.Add("Mace");
+                                    if (fighterA.inventoryList.Contains("Mace")) //om du redan har mace så får du inte en till
+                                    {
+                                        break;
+                                    }
+                                    else fighterA.inventoryList.Add("Mace"); Console.WriteLine("You receive a Mace!");
                                     break;
-
                                 case 2:
-                                    fighterA.inventoryList.Add("Sword");
+                                    if (fighterA.inventoryList.Contains("Sword"))
+                                    {
+                                        break;
+                                    }
+                                    else fighterA.inventoryList.Add("Sword"); Console.WriteLine("You receive a Sword!");
                                     break;
 
                                 case 3:
-                                    fighterA.inventoryList.Add("Dagger");
+                                    if (fighterA.inventoryList.Contains("Dagger"))
+                                    {
+                                        break;
+                                    }
+                                    else fighterA.inventoryList.Add("Dagger"); Console.WriteLine("You receive a Dagger!");
                                     break;
 
                                 case 4:
-                                    fighterA.inventoryList.Add("Pike");
+                                    if (fighterA.inventoryList.Contains("Pike"))
+                                    {
+                                        break;
+                                    }
+                                    else fighterA.inventoryList.Add("Pike"); Console.WriteLine("You receive a Pike!");
                                     break;
                             }
                         }
@@ -188,7 +282,7 @@ namespace FightSimV2
             Console.WriteLine("Pick a class!\n");
             Console.WriteLine("1: Brute");
             Console.WriteLine("2: Warrior");
-            Console.WriteLine("3: Rouge");
+            Console.WriteLine("3: Assasin");
         }
 
         private static void StanceOptions()
