@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace FightSimV2
 {
@@ -7,61 +6,45 @@ namespace FightSimV2
     {
         protected int minDmg = 50;
         protected int maxDmg = 100;
+        protected int dmg;
         protected int hitChance;
         protected int minHitChance;
         protected int maxHitChance;
         protected int statModifier = 1;
-        protected string weaponName = "";
-        public List<Action> weaponsList = new List<Action>();
+        public string weaponName = "";
 
         public Vapen()
         {
-            weaponsList.Add(Mace);
-            weaponsList.Add(Sword);
-            weaponsList.Add(Pike);
-            weaponsList.Add(Dagger);
-        }
-        public int GetAllWeapons()
-        {
-            return weaponsList.Count;
-        }
-        public void Mace()  // olika vapen att välja mellan
-        {
-            minDmg = 20 * statModifier;
-            maxDmg = 120 * statModifier;
-            minHitChance = 0;
-            maxHitChance = 85;
-            weaponName = "Mace";
         }
 
-        public void Sword()
+        public int GetAllWeaponsCount()
         {
-            minDmg = 70 * statModifier;
-            maxDmg = 80 * statModifier;
-            minHitChance = 15;
-            maxHitChance = 100;
-            weaponName = "Sword";
+            return 4;
         }
 
-        public void Pike()
+        public virtual int LightAttack(int enemyArmor)
         {
-            minDmg = 40 * statModifier;
-            maxDmg = 90 * statModifier;
-            minHitChance = 33;
-            maxHitChance = 100;
-            weaponName = "Pike";
+            hitChance = GenRandom(minHitChance, maxHitChance);
+            if (hitChance > 33)
+            {
+                dmg = GenRandom(minDmg, maxDmg);
+                return dmg / enemyArmor;
+            }
+            else return 0;
         }
 
-        public void Dagger()
+        public virtual int HeavyAttack(int enemyArmor)
         {
-            minDmg = 40 * statModifier;
-            maxDmg = 120 * statModifier;
-            minHitChance = 50;
-            maxHitChance = 100;
-            weaponName = "Dagger";
+            hitChance = GenRandom(minHitChance, maxHitChance);
+            if (hitChance > 66)
+            {
+                dmg = GenRandom(minDmg, maxDmg);
+                return (dmg / enemyArmor) + minDmg;
+            }
+            else return 0;
         }
 
-        protected string GetWeapon()
+        public string GetWeaponName()
         {
             if (weaponName == "")
             {

@@ -15,7 +15,6 @@ namespace FightSimV2
             maxHP = 750 * statModifier;
             hp = maxHP * statModifier;
             armor = assasinArmor;
-            Dagger();
         }
         public override void ModifyStats(int playerLevel)
         {

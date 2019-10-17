@@ -47,9 +47,13 @@
     <Compile Include="Brute.cs" />
     <Compile Include="Creature.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="Dagger.cs" />
     <Compile Include="Goblin.cs" />
+    <Compile Include="Mace.cs" />
+    <Compile Include="Pike.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sword.cs" />
     <Compile Include="Vapen.cs" />
     <Compile Include="Warrior.cs" />
     <Compile Include="Zombie.cs" />

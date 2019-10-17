@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FightSimV2
 {
@@ -12,8 +13,12 @@ namespace FightSimV2
             bool classMenu = false;
             var keyRead = Console.ReadKey(true).Key;
 
-            Character fighterA = new Character(); //skapar spelaren
-            Creature fighterB = new Zombie();  //skapar en creature
+            List<Vapen> inventoryList = new List<Vapen>();
+
+            Character player = new Character(); //skapar spelaren
+            Vapen playerWeapon = new Vapen();
+            Vapen enemyWeapon = new Mace();
+            Creature enemy = new Zombie();  //skapar en creature
 
             while (gameRunning)
             {
@@ -25,20 +30,23 @@ namespace FightSimV2
                     keyRead = Console.ReadKey(true).Key;
                     if (keyRead == ConsoleKey.D1)
                     {
-                        fighterA = new Brute();
-                        fighterA.inventoryList.Add("Mace");
+                        player = new Brute();
+                        playerWeapon = new Mace();
+                        inventoryList.Add(playerWeapon);
                         classMenu = true;
                     }
                     if (keyRead == ConsoleKey.D2)
                     {
-                        fighterA = new Warrior();
-                        fighterA.inventoryList.Add("Sword");
+                        player = new Warrior();
+                        playerWeapon = new Sword();
+                        inventoryList.Add(playerWeapon);
                         classMenu = true;
                     }
                     if (keyRead == ConsoleKey.D3)
                     {
-                        fighterA = new Assasin();
-                        fighterA.inventoryList.Add("Dagger");
+                        player = new Assasin();
+                        playerWeapon = new Dagger();
+                        inventoryList.Add(playerWeapon);
                         classMenu = true;
                     }
                     Console.Clear();
@@ -50,11 +58,11 @@ namespace FightSimV2
                     keyRead = Console.ReadKey(true).Key;
                     if (keyRead == ConsoleKey.D1)
                     {
-                        fighterA.Present();
+                        player.Present(playerWeapon.GetWeaponName());
                     }
                     if (keyRead == ConsoleKey.D2)
                     {
-                        fighterB.Present();
+                        enemy.Present(enemyWeapon.GetWeaponName());
                     }
                     if (keyRead == ConsoleKey.D3)
                     {
@@ -66,191 +74,191 @@ namespace FightSimV2
                     {
                         Console.Clear();
                         Console.WriteLine("Pick a weapon to equip!");
-                        for (int i = 0; i < fighterA.GetAllWeapons(); i++)
+                        for (int i = 0; i < playerWeapon.GetAllWeaponsCount(); i++)
                         {
-                            if (i < fighterA.inventoryList.Count)
+                            if (i < playerWeapon.GetAllWeaponsCount())
                             {
                                 Console.WriteLine("___________________");
-                                Console.WriteLine((i + 1) + ": " + fighterA.inventoryList[i]);
+                                Console.WriteLine((i + 1) + ": " + inventoryList[i].weaponName);
                             }
                         }
 
                         keyRead = Console.ReadKey(true).Key;
                         if (keyRead == ConsoleKey.D1)
                         {
-                            if (fighterA.inventoryList[0].Contains("Mace"))
+                            if (player.inventoryList[0].Contains("Mace"))
                             {
-                                fighterA.Mace();
+                                playerWeapon = new Mace();
                             }
-                            if (fighterA.inventoryList[0].Contains("Sword"))
+                            if (player.inventoryList[0].Contains("Sword"))
                             {
-                                fighterA.Sword();
+                                playerWeapon = new Sword();
                             }
-                            if (fighterA.inventoryList[0].Contains("Pike"))
+                            if (player.inventoryList[0].Contains("Pike"))
                             {
-                                fighterA.Pike();
+                                playerWeapon = new Pike();
                             }
-                            if (fighterA.inventoryList[0].Contains("Dagger"))
+                            if (player.inventoryList[0].Contains("Dagger"))
                             {
-                                fighterA.Dagger();
+                                playerWeapon = new Dagger();
                             }
                         }
                         else if (keyRead == ConsoleKey.D2)
                         {
-                            if (fighterA.inventoryList[1].Contains("Mace"))
+                            if (player.inventoryList[1].Contains("Mace"))
                             {
-                                fighterA.Mace();
+                                playerWeapon = new Mace();
                             }
-                            if (fighterA.inventoryList[1].Contains("Sword"))
+                            if (player.inventoryList[1].Contains("Sword"))
                             {
-                                fighterA.Sword();
+                                playerWeapon = new Sword();
                             }
-                            if (fighterA.inventoryList[1].Contains("Pike"))
+                            if (player.inventoryList[1].Contains("Pike"))
                             {
-                                fighterA.Pike();
+                                playerWeapon = new Pike();
                             }
-                            if (fighterA.inventoryList[1].Contains("Dagger"))
+                            if (player.inventoryList[1].Contains("Dagger"))
                             {
-                                fighterA.Dagger();
+                                playerWeapon = new Dagger();
                             }
                         }
                         else if (keyRead == ConsoleKey.D3)
                         {
-                            if (fighterA.inventoryList[2].Contains("Mace"))
+                            if (player.inventoryList[2].Contains("Mace"))
                             {
-                                fighterA.Mace();
+                                playerWeapon = new Mace();
                             }
-                            if (fighterA.inventoryList[2].Contains("Sword"))
+                            if (player.inventoryList[2].Contains("Sword"))
                             {
-                                fighterA.Sword();
+                                playerWeapon = new Sword();
                             }
-                            if (fighterA.inventoryList[2].Contains("Pike"))
+                            if (player.inventoryList[2].Contains("Pike"))
                             {
-                                fighterA.Pike();
+                                playerWeapon = new Pike();
                             }
-                            if (fighterA.inventoryList[2].Contains("Dagger"))
+                            if (player.inventoryList[2].Contains("Dagger"))
                             {
-                                fighterA.Dagger();
+                                playerWeapon = new Dagger();
                             }
                         }
                         else if (keyRead == ConsoleKey.D4)
                         {
-                            if (fighterA.inventoryList[3].Contains("Mace"))
+                            if (player.inventoryList[3].Contains("Mace"))
                             {
-                                fighterA.Mace();
+                                playerWeapon = new Mace();
                             }
-                            if (fighterA.inventoryList[3].Contains("Sword"))
+                            if (player.inventoryList[3].Contains("Sword"))
                             {
-                                fighterA.Sword();
+                                playerWeapon = new Sword();
                             }
-                            if (fighterA.inventoryList[3].Contains("Pike"))
+                            if (player.inventoryList[3].Contains("Pike"))
                             {
-                                fighterA.Pike();
+                                playerWeapon = new Pike();
                             }
-                            if (fighterA.inventoryList[3].Contains("Dagger"))
+                            if (player.inventoryList[3].Contains("Dagger"))
                             {
-                                fighterA.Dagger();
+                                playerWeapon = new Dagger();
                             }
                         }
                     }
                 }
                 while (fighting)
                 {
-                    if (fighterA.IsAlive() && fighterB.IsAlive())  //när båda lever
+                    if (player.IsAlive() && enemy.IsAlive())  //när båda lever
                     {
-                        Console.WriteLine(fighterA.GetName() + "'s HP: " + fighterA.GetHp());  //Skriv ut deras hp
-                        Console.WriteLine(fighterB.GetName() + "'s HP: " + fighterB.GetHp());
+                        Console.WriteLine(player.GetName() + "'s HP: " + player.GetHp());  //Skriv ut deras hp
+                        Console.WriteLine(enemy.GetName() + "'s HP: " + enemy.GetHp());
                         Console.WriteLine("___________________");
                         StanceOptions();
                         keyRead = Console.ReadKey(true).Key;
                         if (keyRead == ConsoleKey.D1)
                         {
-                            fighterA.DefensiveStance();
+                            player.DefensiveStance();
                         }
                         else if (keyRead == ConsoleKey.D2)
                         {
-                            fighterA.OffensiveStance();
+                            player.OffensiveStance();
                         }
 
                         AttackOptions();
                         keyRead = Console.ReadKey(true).Key;
                         if (keyRead == ConsoleKey.D1)
                         {
-                            fighterB.Hurt(fighterA.LightAttack(fighterB.armor)); //light attack faktorerar in armor
+                            enemy.Hurt(playerWeapon.LightAttack(enemy.armor)); //light attack faktorerar in armor
                         }
                         else if (keyRead == ConsoleKey.D2)
                         {
-                            fighterB.Hurt(fighterA.HeavyAttack(fighterB.armor)); //heavy attack faktorerar in armor
+                            enemy.Hurt(playerWeapon.HeavyAttack(enemy.armor)); //heavy attack faktorerar in armor
                         }
 
-                        if (fighterB.GenRandom(0, 1) == 0) // 50/50 stance för enemy
+                        if (enemy.GenRandom(0, 1) == 0) // 50/50 stance för enemy
                         {
-                            fighterB.OffensiveStance();
+                            enemy.OffensiveStance();
                         }
                         else
                         {
-                            fighterB.DefensiveStance();
+                            enemy.DefensiveStance();
                         }
-                        if (fighterB.GenRandom(0, 1) == 0) //50/50 vilken attack för enemy
+                        if (enemy.GenRandom(0, 1) == 0) //50/50 vilken attack för enemy
                         {
-                            fighterA.Hurt(fighterB.LightAttack(fighterA.armor));
+                            player.Hurt(enemyWeapon.LightAttack(player.armor));
                         }
                         else
                         {
-                            fighterA.Hurt(fighterB.HeavyAttack(fighterA.armor));
+                            player.Hurt(enemyWeapon.HeavyAttack(player.armor));
                         }
                         Console.Clear();
                     }
-                    else if (!fighterA.IsAlive() || !fighterB.IsAlive()) //Om någon är död
+                    else if (!player.IsAlive() || !enemy.IsAlive()) //Om någon är död
                     {
-                        if (fighterA.IsAlive())
+                        if (player.IsAlive())
                         {
-                            Console.WriteLine(fighterA.GetName() + " WINS!\n");
-                            fighterA.ReceiveXP(); //få xp om du vinner samt kolla om du lvlar
-                            fighterB.ReceiveXP(); //så att enemy kommer att skala med playern
-                            fighterB = new Goblin();
+                            Console.WriteLine(player.GetName() + " WINS!\n");
+                            player.ReceiveXP(); //få xp om du vinner samt kolla om du lvlar
+                            enemy.ReceiveXP(); //så att enemy kommer att skala med playern
 
-                            switch (fighterA.GenRandom(1, fighterA.weaponsList.Count + 1))
+                            switch (playerWeapon.GenRandom(1, playerWeapon.GetAllWeaponsCount() + 1))
                             {
                                 case 1:
-                                    if (fighterA.inventoryList.Contains("Mace")) //om du redan har mace så får du inte en till
+                                    if (player.inventoryList.Contains("Mace")) //om du redan har mace så får du inte en till
                                     {
                                         break;
                                     }
-                                    else fighterA.inventoryList.Add("Mace"); Console.WriteLine("You receive a Mace!");
+                                    else inventoryList.Add(new Mace()); Console.WriteLine("You receive a Mace!");
                                     break;
+
                                 case 2:
-                                    if (fighterA.inventoryList.Contains("Sword"))
+                                    if (player.inventoryList.Contains("Sword"))
                                     {
                                         break;
                                     }
-                                    else fighterA.inventoryList.Add("Sword"); Console.WriteLine("You receive a Sword!");
+                                    else inventoryList.Add(new Sword()); Console.WriteLine("You receive a Sword!");
                                     break;
 
                                 case 3:
-                                    if (fighterA.inventoryList.Contains("Dagger"))
+                                    if (player.inventoryList.Contains("Dagger"))
                                     {
                                         break;
                                     }
-                                    else fighterA.inventoryList.Add("Dagger"); Console.WriteLine("You receive a Dagger!");
+                                    else inventoryList.Add(new Dagger()); Console.WriteLine("You receive a Dagger!");
                                     break;
 
                                 case 4:
-                                    if (fighterA.inventoryList.Contains("Pike"))
+                                    if (player.inventoryList.Contains("Pike"))
                                     {
                                         break;
                                     }
-                                    else fighterA.inventoryList.Add("Pike"); Console.WriteLine("You receive a Pike!");
+                                    else inventoryList.Add(new Pike()); Console.WriteLine("You receive a Pike!");
                                     break;
                             }
                         }
                         else
                         {
-                            Console.WriteLine(fighterB.GetName() + " WINS");
+                            Console.WriteLine(enemy.GetName() + " WINS");
                         }
 
-                        fighterA.ModifyStats(fighterA.GetLevel()); //skala både player och enemy stats beroende på playerns level
-                        fighterB.ModifyStats(fighterA.GetLevel());
+                        player.ModifyStats(player.GetLevel()); //skala både player och enemy stats beroende på playerns level
+                        enemy.ModifyStats(player.GetLevel());
                         Console.WriteLine("\nPress enter to return to main menu");
                         Console.ReadLine(); Console.Clear();
                         fighting = false; mainMenu = true;

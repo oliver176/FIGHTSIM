@@ -10,7 +10,6 @@
             SetName("Goblin");
             hp = maxHP * statModifier;
             armor = goblinArmor;
-            Sword();
         }
 
         public override void ModifyStats(int playerLevel)

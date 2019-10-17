@@ -15,7 +15,6 @@ namespace FightSimV2
             maxHP = 1000 * statModifier;
             hp = maxHP * statModifier;
             armor = warriorArmor;
-            Sword();
         }
         public override void ModifyStats(int playerLevel)
         {

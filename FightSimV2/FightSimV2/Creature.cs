@@ -10,7 +10,6 @@ namespace FightSimV2
     class Creature : Vapen
     {
         protected int hp;
-        protected int dmg;
         protected int maxHP;
         protected int level = 1;
         int xp = 0;
@@ -86,33 +85,14 @@ namespace FightSimV2
             }
             else return "";
         }
-        public virtual int LightAttack(int enemyArmor)
-        {
-            hitChance = GenRandom(minHitChance, maxHitChance);
-            if (hitChance > 33)
-            {
-                dmg = GenRandom(minDmg, maxDmg);
-                return dmg / enemyArmor;
-            }
-            else return 0;
-        }
-        public virtual int HeavyAttack(int enemyArmor)
-        {
-            hitChance = GenRandom(minHitChance, maxHitChance);
-            if (hitChance > 66)
-            {
-                dmg = GenRandom(minDmg, maxDmg);
-                return (dmg / enemyArmor) + minDmg;
-            }
-            else return 0;
-        }
-        public virtual void Present()
+
+        public virtual void Present(string weaponName)
         {
             Console.Clear();
             Console.WriteLine("Name: " + GetName());
             Console.WriteLine("\nHP: " + hp);
-            Console.WriteLine("Equipped Weapon: " + GetWeapon());
-            Console.WriteLine("Current Stance: " + GetStance());
+            Console.WriteLine("Equipped Weapon: " + GetWeaponName());
+            Console.WriteLine("Current Stance: " + weaponName);
             Console.WriteLine("Armor rating: " + armor);
             Console.WriteLine("____________________________________");
 

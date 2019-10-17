@@ -15,21 +15,23 @@ namespace FightSimV2
             hp = maxHP;
         }
 
-        public override void Present()
+        public override void Present(string weaponName)
         {
             Console.Clear();
             Console.WriteLine("Name: " + GetName());
             Console.WriteLine("Lvl " + level + " " + className + " " + GetXP() + "/" + xpRequired + "XP");
             Console.WriteLine("\nHP: " + hp);
             Console.WriteLine("Armor rating: " + armor);
-            Console.WriteLine("Equipped Weapon: " + GetWeapon() + " Damage");
+            Console.WriteLine("Equipped Weapon: " + weaponName);
             Console.WriteLine("Current Stance: " + GetStance());
             Console.WriteLine("____________________________________");
         }
+
         public int GetLevel()
         {
             return level;
         }
+
         public override void ModifyStats(int playerLevel)
         {
             statModifier = playerLevel; //Improve stats beroende på lvl

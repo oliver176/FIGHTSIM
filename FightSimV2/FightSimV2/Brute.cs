@@ -15,7 +15,6 @@ namespace FightSimV2
             maxHP = 1500 * statModifier;
             hp = maxHP * statModifier;
             armor = bruteArmor;
-            Mace();
         }
         public override void ModifyStats(int playerLevel)
         {

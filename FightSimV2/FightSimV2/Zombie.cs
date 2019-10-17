@@ -10,7 +10,6 @@
             SetName("Zombie");
             hp = maxHP;
             armor = zombieArmor;
-            Mace();
         }
 
         public override void ModifyStats(int playerLevel)
