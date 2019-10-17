@@ -91,8 +91,8 @@ namespace FightSimV2
             Console.Clear();
             Console.WriteLine("Name: " + GetName());
             Console.WriteLine("\nHP: " + hp);
-            Console.WriteLine("Equipped Weapon: " + GetWeaponName());
-            Console.WriteLine("Current Stance: " + weaponName);
+            Console.WriteLine("Equipped Weapon: " + weaponName);
+            Console.WriteLine("Current Stance: " + GetStance());
             Console.WriteLine("Armor rating: " + armor);
             Console.WriteLine("____________________________________");
 

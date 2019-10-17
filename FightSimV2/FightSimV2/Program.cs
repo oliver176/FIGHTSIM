@@ -76,7 +76,7 @@ namespace FightSimV2
                         Console.WriteLine("Pick a weapon to equip!");
                         for (int i = 0; i < playerWeapon.GetAllWeaponsCount(); i++)
                         {
-                            if (i < playerWeapon.GetAllWeaponsCount())
+                            if (i < inventoryList.Count)
                             {
                                 Console.WriteLine("___________________");
                                 Console.WriteLine((i + 1) + ": " + inventoryList[i].weaponName);
@@ -86,80 +86,21 @@ namespace FightSimV2
                         keyRead = Console.ReadKey(true).Key;
                         if (keyRead == ConsoleKey.D1)
                         {
-                            if (player.inventoryList[0].Contains("Mace"))
-                            {
-                                playerWeapon = new Mace();
-                            }
-                            if (player.inventoryList[0].Contains("Sword"))
-                            {
-                                playerWeapon = new Sword();
-                            }
-                            if (player.inventoryList[0].Contains("Pike"))
-                            {
-                                playerWeapon = new Pike();
-                            }
-                            if (player.inventoryList[0].Contains("Dagger"))
-                            {
-                                playerWeapon = new Dagger();
-                            }
+                            playerWeapon = inventoryList[0];
                         }
-                        else if (keyRead == ConsoleKey.D2)
+                        else if (keyRead == ConsoleKey.D2 && inventoryList.Count >= 2)
                         {
-                            if (player.inventoryList[1].Contains("Mace"))
-                            {
-                                playerWeapon = new Mace();
-                            }
-                            if (player.inventoryList[1].Contains("Sword"))
-                            {
-                                playerWeapon = new Sword();
-                            }
-                            if (player.inventoryList[1].Contains("Pike"))
-                            {
-                                playerWeapon = new Pike();
-                            }
-                            if (player.inventoryList[1].Contains("Dagger"))
-                            {
-                                playerWeapon = new Dagger();
-                            }
+                            playerWeapon = inventoryList[1];
                         }
-                        else if (keyRead == ConsoleKey.D3)
+                        else if (keyRead == ConsoleKey.D3 && inventoryList.Count >= 3)
                         {
-                            if (player.inventoryList[2].Contains("Mace"))
-                            {
-                                playerWeapon = new Mace();
-                            }
-                            if (player.inventoryList[2].Contains("Sword"))
-                            {
-                                playerWeapon = new Sword();
-                            }
-                            if (player.inventoryList[2].Contains("Pike"))
-                            {
-                                playerWeapon = new Pike();
-                            }
-                            if (player.inventoryList[2].Contains("Dagger"))
-                            {
-                                playerWeapon = new Dagger();
-                            }
+                            playerWeapon = inventoryList[2];
                         }
-                        else if (keyRead == ConsoleKey.D4)
+                        else if (keyRead == ConsoleKey.D4 && inventoryList.Count >= 4)
                         {
-                            if (player.inventoryList[3].Contains("Mace"))
-                            {
-                                playerWeapon = new Mace();
-                            }
-                            if (player.inventoryList[3].Contains("Sword"))
-                            {
-                                playerWeapon = new Sword();
-                            }
-                            if (player.inventoryList[3].Contains("Pike"))
-                            {
-                                playerWeapon = new Pike();
-                            }
-                            if (player.inventoryList[3].Contains("Dagger"))
-                            {
-                                playerWeapon = new Dagger();
-                            }
+                            playerWeapon = inventoryList[3];
                         }
+                        Console.Clear();
                     }
                 }
                 while (fighting)
@@ -220,35 +161,23 @@ namespace FightSimV2
                             switch (playerWeapon.GenRandom(1, playerWeapon.GetAllWeaponsCount() + 1))
                             {
                                 case 1:
-                                    if (player.inventoryList.Contains("Mace")) //om du redan har mace så får du inte en till
-                                    {
-                                        break;
-                                    }
-                                    else inventoryList.Add(new Mace()); Console.WriteLine("You receive a Mace!");
+
+                                    inventoryList.Add(new Mace()); Console.WriteLine("You receive a Mace!");
                                     break;
 
                                 case 2:
-                                    if (player.inventoryList.Contains("Sword"))
-                                    {
-                                        break;
-                                    }
-                                    else inventoryList.Add(new Sword()); Console.WriteLine("You receive a Sword!");
+
+                                    inventoryList.Add(new Sword()); Console.WriteLine("You receive a Sword!");
                                     break;
 
                                 case 3:
-                                    if (player.inventoryList.Contains("Dagger"))
-                                    {
-                                        break;
-                                    }
-                                    else inventoryList.Add(new Dagger()); Console.WriteLine("You receive a Dagger!");
+
+                                    inventoryList.Add(new Dagger()); Console.WriteLine("You receive a Dagger!");
                                     break;
 
                                 case 4:
-                                    if (player.inventoryList.Contains("Pike"))
-                                    {
-                                        break;
-                                    }
-                                    else inventoryList.Add(new Pike()); Console.WriteLine("You receive a Pike!");
+
+                                    inventoryList.Add(new Pike()); Console.WriteLine("You receive a Pike!");
                                     break;
                             }
                         }
