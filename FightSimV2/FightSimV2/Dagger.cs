@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FightSimV2
+﻿namespace FightSimV2
 {
-    class Dagger : Vapen
+    internal class Dagger : Vapen
     {
         public Dagger()
         {

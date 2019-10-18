@@ -12,13 +12,23 @@ namespace FightSimV2
             bool gameRunning = true;
             bool classMenu = false;
             var keyRead = Console.ReadKey(true).Key;
+            var readKey = Console.ReadKey();
+
+            // Variable to hold number
+
+            ConsoleKeyInfo UserInput = Console.ReadKey(); // Get user input
 
             List<Vapen> inventoryList = new List<Vapen>();
+            List<Creature> enemyList = new List<Creature>
+            {
+                new Goblin(),
+                new Zombie()
+            };
 
             Character player = new Character(); //skapar spelaren
             Vapen playerWeapon = new Vapen();
+            Creature enemy = new Creature();  //skapar enemy
             Vapen enemyWeapon = new Mace();
-            Creature enemy = new Zombie();  //skapar en creature
 
             while (gameRunning)
             {
@@ -68,6 +78,7 @@ namespace FightSimV2
                     {
                         mainMenu = false;
                         fighting = true; //sätt igång while loopen med fight koden
+                        enemy = enemyList[enemy.GenRandom(0, enemyList.Count)]; //välj en random enemy av de som finns från enemy listan
                         Console.Clear();
                     }
                     if (keyRead == ConsoleKey.D4)
@@ -83,23 +94,17 @@ namespace FightSimV2
                             }
                         }
 
-                        keyRead = Console.ReadKey(true).Key;
-                        if (keyRead == ConsoleKey.D1)
+                        //keyRead = Console.ReadKey(true).Key;
+                        UserInput = Console.ReadKey();
+                        if (char.IsDigit(UserInput.KeyChar))
                         {
-                            playerWeapon = inventoryList[0];
+                            int.TryParse(UserInput.KeyChar.ToString(), out int index); // use Parse if it's a Digit
+                            if (index <= inventoryList.Count)
+                            {
+                                playerWeapon = inventoryList[index - 1];
+                            }
                         }
-                        else if (keyRead == ConsoleKey.D2 && inventoryList.Count >= 2)
-                        {
-                            playerWeapon = inventoryList[1];
-                        }
-                        else if (keyRead == ConsoleKey.D3 && inventoryList.Count >= 3)
-                        {
-                            playerWeapon = inventoryList[2];
-                        }
-                        else if (keyRead == ConsoleKey.D4 && inventoryList.Count >= 4)
-                        {
-                            playerWeapon = inventoryList[3];
-                        }
+
                         Console.Clear();
                     }
                 }
@@ -114,11 +119,11 @@ namespace FightSimV2
                         keyRead = Console.ReadKey(true).Key;
                         if (keyRead == ConsoleKey.D1)
                         {
-                            player.DefensiveStance();
+                            player.DefensiveStance(playerWeapon.GetMinDmg(), playerWeapon.GetMaxDmg()); //Ökar armor
                         }
                         else if (keyRead == ConsoleKey.D2)
                         {
-                            player.OffensiveStance();
+                            player.OffensiveStance(playerWeapon.GetMinDmg(), playerWeapon.GetMaxDmg()); //Ökar dmg
                         }
 
                         AttackOptions();
@@ -134,11 +139,11 @@ namespace FightSimV2
 
                         if (enemy.GenRandom(0, 1) == 0) // 50/50 stance för enemy
                         {
-                            enemy.OffensiveStance();
+                            enemy.OffensiveStance(enemyWeapon.GetMinDmg(), enemyWeapon.GetMaxDmg()); //Ökar dmg
                         }
                         else
                         {
-                            enemy.DefensiveStance();
+                            enemy.DefensiveStance(enemyWeapon.GetMinDmg(), enemyWeapon.GetMaxDmg()); //Ökar Armor
                         }
                         if (enemy.GenRandom(0, 1) == 0) //50/50 vilken attack för enemy
                         {
@@ -185,9 +190,9 @@ namespace FightSimV2
                         {
                             Console.WriteLine(enemy.GetName() + " WINS");
                         }
-
-                        player.ModifyStats(player.GetLevel()); //skala både player och enemy stats beroende på playerns level
-                        enemy.ModifyStats(player.GetLevel());
+                        //skala både player och enemy stats beroende på playerns level
+                        player.ModifyStats(player.GetLevel(), playerWeapon.GetMinDmg(), playerWeapon.GetMaxDmg());
+                        enemy.ModifyStats(player.GetLevel(), enemyWeapon.GetMinDmg(), enemyWeapon.GetMaxDmg());
                         Console.WriteLine("\nPress enter to return to main menu");
                         Console.ReadLine(); Console.Clear();
                         fighting = false; mainMenu = true;
@@ -202,6 +207,12 @@ namespace FightSimV2
             Console.WriteLine("2: Present Opponent");
             Console.WriteLine("3: Start Fighting");
             Console.WriteLine("4: Show Inventory\n");
+        }
+
+        private static void CreateEnemyList(List<Creature> enemyLista)
+        {
+            enemyLista.Add(new Goblin());
+            enemyLista.Add(new Zombie());
         }
 
         private static void WeaponOptions()

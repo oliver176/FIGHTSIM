@@ -1,6 +1,6 @@
 ﻿namespace FightSimV2
 {
-    class Mace : Vapen
+    internal class Mace : Vapen
     {
         public Mace()
         {

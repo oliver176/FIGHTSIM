@@ -1,28 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FightSimV2
+﻿namespace FightSimV2
 {
-    class Warrior : Character
+    internal class Warrior : Character
     {
-        int warriorArmor = 3;
+        private int warriorArmor = 3;
+
         public Warrior()
         {
             className = "Warrior";
-            maxHP = 1000 * statModifier;
+            maxHP = 500 * statModifier;
             hp = maxHP * statModifier;
             armor = warriorArmor;
         }
-        public override void ModifyStats(int playerLevel)
+
+        public override void ModifyStats(int playerLevel, int minDmg, int maxDmg)
         {
-            statModifier = playerLevel; //Improve stats beroende på lvl
-            hp = maxHP * statModifier;
-            armor *= statModifier;
-            minDmg *= statModifier;
-            maxDmg *= statModifier;
+            if (xp >= xpRequired)
+            {
+                level++;
+                xpRequired += 50;
+                xp = 0;
+
+                statModifier = playerLevel; //Improve stats beroende på lvl
+                hp = maxHP + (50 * statModifier);
+                armor = armor + (3 * statModifier);
+                minDmg = minDmg + (20 * statModifier);
+                maxDmg = maxDmg + (30 * statModifier);
+            }
+            else hp = maxHP;
         }
     }
 }

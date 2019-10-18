@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace FightSimV2
 {
     internal class Character : Creature
     {
         protected string className;
-        public List<string> inventoryList = new List<string>();
 
         public Character()
         {
@@ -30,15 +28,6 @@ namespace FightSimV2
         public int GetLevel()
         {
             return level;
-        }
-
-        public override void ModifyStats(int playerLevel)
-        {
-            statModifier = playerLevel; //Improve stats beroende på lvl
-            hp = maxHP * statModifier;
-            armor *= statModifier;
-            minDmg *= statModifier;
-            maxDmg *= statModifier;
         }
     }
 }

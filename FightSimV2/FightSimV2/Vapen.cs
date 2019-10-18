@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace FightSimV2
+﻿namespace FightSimV2
 {
-    internal class Vapen
+    internal class Vapen : BaseClass
     {
         protected int minDmg = 50;
         protected int maxDmg = 100;
@@ -16,7 +14,14 @@ namespace FightSimV2
         public Vapen()
         {
         }
-
+        public int GetMinDmg()
+        {
+            return minDmg;
+        }
+        public int GetMaxDmg()
+        {
+            return maxDmg;
+        }
         public int GetAllWeaponsCount()
         {
             return 4;
@@ -51,12 +56,6 @@ namespace FightSimV2
                 return "None";
             }
             else return weaponName + " " + minDmg + "-" + maxDmg;
-        }
-
-        public int GenRandom(int min, int max)
-        {
-            Random gen = new Random();
-            return gen.Next(min, max);
         }
     }
 }

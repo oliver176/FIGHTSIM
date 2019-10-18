@@ -12,17 +12,25 @@ namespace FightSimV2
         public Assasin()
         {
             className = "Assasin";
-            maxHP = 750 * statModifier;
+            maxHP = 375 * statModifier;
             hp = maxHP * statModifier;
             armor = assasinArmor;
         }
-        public override void ModifyStats(int playerLevel)
+        public override void ModifyStats(int playerLevel, int minDmg, int maxDmg)
         {
-            statModifier = playerLevel; //Improve stats beroende på lvl
-            hp = maxHP * statModifier;
-            armor *= statModifier;
-            minDmg *= statModifier;
-            maxDmg *= statModifier;
+            if (xp >= xpRequired)
+            {
+                level++;
+                xpRequired += 50;
+                xp = 0;
+
+                statModifier = playerLevel; //Improve stats beroende på lvl
+                hp = maxHP + (15 * statModifier);
+                armor = armor + (2 * statModifier);
+                minDmg = minDmg + (20 * statModifier);
+                maxDmg = maxDmg + (50 * statModifier);
+            }
+            else hp = maxHP;
         }
     }
 }
