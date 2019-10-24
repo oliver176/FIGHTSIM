@@ -2,7 +2,6 @@
 {
     internal class Goblin : Creature
     {
-
         public Goblin()
         {
             maxHP = 400 * statModifier;

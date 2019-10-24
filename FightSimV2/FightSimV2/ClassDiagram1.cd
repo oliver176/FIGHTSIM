@@ -3,19 +3,19 @@
   <Class Name="FightSimV2.Assasin">
     <Position X="5.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assasin.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FightSimV2.BaseClass">
-    <Position X="9.5" Y="0.5" Width="1.5" />
+    <Position X="9.25" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>BaseClass.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FightSimV2.Brute">
-    <Position X="9.75" Y="7.75" Width="1.5" />
+    <Position X="10" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Brute.cs</FileName>
@@ -29,56 +29,66 @@
     </TypeIdentifier>
   </Class>
   <Class Name="FightSimV2.Creature">
-    <Position X="3.5" Y="1" Width="1.5" />
+    <Position X="5.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CQAAgAAAEIgAAJQAAAAAAAAAABEEAEAIAABQRFCEhCA=</HashCode>
       <FileName>Creature.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FightSimV2.Dagger">
-    <Position X="14" Y="3.25" Width="1.5" />
+    <Position X="14" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Dagger.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FightSimV2.Goblin">
-    <Position X="0.5" Y="4.5" Width="1.5" />
+    <Position X="2.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Goblin.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FightSimV2.Mace" Collapsed="true">
-    <Position X="18.5" Y="3.25" Width="1.5" />
+  <Class Name="FightSimV2.Mace">
+    <Position X="18" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Mace.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FightSimV2.Pike">
-    <Position X="11.75" Y="3.25" Width="1.5" />
+    <Position X="12" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Pike.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FightSimV2.Program">
-    <Position X="12.5" Y="0.5" Width="1.5" />
+    <Position X="15" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAAAAAAAAAAACQAAIAAAQAAAQABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FightSimV2.Sword">
-    <Position X="16.25" Y="3.25" Width="1.5" />
+    <Position X="16" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Sword.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FightSimV2.Vapen">
-    <Position X="15.25" Y="1.75" Width="1.5" />
+    <Position X="15" Y="6.75" Width="1.5" />
+    <InheritanceLine Type="FightSimV2.BaseClass" FixedFromPoint="true">
+      <Path>
+        <Point X="10" Y="1" />
+        <Point X="10" Y="0.625" />
+        <Point X="11.125" Y="0.625" />
+        <Point X="11.125" Y="6.375" />
+        <Point X="15.75" Y="6.375" />
+        <Point X="15.75" Y="6.75" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>CAAAAAAAAIAAAIAAAIAIAAAAQAIAACCCAAAACoCAAAA=</HashCode>
       <FileName>Vapen.cs</FileName>
@@ -92,9 +102,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="FightSimV2.Zombie">
-    <Position X="0.5" Y="6.75" Width="1.5" />
+    <Position X="2.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Zombie.cs</FileName>
     </TypeIdentifier>
   </Class>

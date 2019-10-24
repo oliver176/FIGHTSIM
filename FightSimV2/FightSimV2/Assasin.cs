@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FightSimV2
+﻿namespace FightSimV2
 {
-    class Assasin : Character
+    internal class Assasin : Character
     {
         public Assasin()
         {
@@ -15,6 +9,7 @@ namespace FightSimV2
             hp = maxHP * statModifier;
             armor = 2;
         }
+
         public override void ModifyStats(int playerLevel, int minDmg, int maxDmg)
         {
             if (xp >= xpRequired)

@@ -14,14 +14,17 @@
         public Vapen()
         {
         }
+
         public int GetMinDmg()
         {
             return minDmg;
         }
+
         public int GetMaxDmg()
         {
             return maxDmg;
         }
+
         public int GetAllWeaponsCount()
         {
             return 4;

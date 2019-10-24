@@ -2,7 +2,6 @@
 {
     internal class Warrior : Character
     {
-
         public Warrior()
         {
             className = "Warrior";
