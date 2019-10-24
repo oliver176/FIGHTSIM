@@ -1,51 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="FightSimV2.Assasin">
-    <Position X="5" Y="4.75" Width="1.5" />
+    <Position X="5.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assasin.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FightSimV2.BaseClass" Collapsed="true">
+  <Class Name="FightSimV2.BaseClass">
     <Position X="9.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>BaseClass.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FightSimV2.Brute" Collapsed="true">
-    <Position X="9.5" Y="4.75" Width="1.5" />
+  <Class Name="FightSimV2.Brute">
+    <Position X="9.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Brute.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="FightSimV2.Character">
-    <Position X="7.25" Y="3.25" Width="1.5" />
+    <Position X="7.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAAAABAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Character.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FightSimV2.Creature" Collapsed="true">
-    <Position X="5" Y="1.75" Width="1.5" />
+  <Class Name="FightSimV2.Creature">
+    <Position X="3.5" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CQAAgAAAEIgAAJQAAAAAAAAAABEEAEAIAABQRFCEhCA=</HashCode>
       <FileName>Creature.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FightSimV2.Dagger" Collapsed="true">
+  <Class Name="FightSimV2.Dagger">
     <Position X="14" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Dagger.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FightSimV2.Goblin" Collapsed="true">
-    <Position X="2.75" Y="3.25" Width="1.5" />
+  <Class Name="FightSimV2.Goblin">
+    <Position X="0.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Goblin.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -56,43 +56,43 @@
       <FileName>Mace.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FightSimV2.Pike" Collapsed="true">
+  <Class Name="FightSimV2.Pike">
     <Position X="11.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Pike.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FightSimV2.Program" Collapsed="true">
+  <Class Name="FightSimV2.Program">
     <Position X="12.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAAAAAAAAAAACQAAIAAAQAAAQABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FightSimV2.Sword" Collapsed="true">
+  <Class Name="FightSimV2.Sword">
     <Position X="16.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Sword.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FightSimV2.Vapen" Collapsed="true">
+  <Class Name="FightSimV2.Vapen">
     <Position X="15.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAIAAAIAAAIAIAAAAQAIAACCCAAAACoCAAAA=</HashCode>
       <FileName>Vapen.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FightSimV2.Warrior" Collapsed="true">
-    <Position X="7" Y="5.75" Width="1.5" />
+  <Class Name="FightSimV2.Warrior">
+    <Position X="7.75" Y="7.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Warrior.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="FightSimV2.Zombie" Collapsed="true">
-    <Position X="0.5" Y="3.25" Width="1.5" />
+  <Class Name="FightSimV2.Zombie">
+    <Position X="0.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Zombie.cs</FileName>

@@ -8,13 +8,12 @@ namespace FightSimV2
 {
     class Assasin : Character
     {
-        int assasinArmor = 2;
         public Assasin()
         {
             className = "Assasin";
             maxHP = 375 * statModifier;
             hp = maxHP * statModifier;
-            armor = assasinArmor;
+            armor = 2;
         }
         public override void ModifyStats(int playerLevel, int minDmg, int maxDmg)
         {

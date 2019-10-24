@@ -2,14 +2,13 @@
 {
     internal class Warrior : Character
     {
-        private int warriorArmor = 3;
 
         public Warrior()
         {
             className = "Warrior";
             maxHP = 500 * statModifier;
             hp = maxHP * statModifier;
-            armor = warriorArmor;
+            armor = 5;
         }
 
         public override void ModifyStats(int playerLevel, int minDmg, int maxDmg)
