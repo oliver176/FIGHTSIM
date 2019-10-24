@@ -15,7 +15,7 @@ namespace FightSimV2
         private bool defStance = false;
         private bool offStance = false;
         protected int statModifier = 1;
-        public int armor;
+        protected int armor;
 
         public Creature()
         {
@@ -119,6 +119,11 @@ namespace FightSimV2
                 hp = 0;
             }
             return hp;
+        }
+
+        public int GetArmor()
+        {
+            return armor;
         }
 
         protected int GetXP()

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using RestSharp;
 
 namespace FightSimV2
 {
@@ -14,8 +16,6 @@ namespace FightSimV2
             var keyRead = Console.ReadKey(true).Key;
             var readKey = Console.ReadKey();
 
-            // Variable to hold number
-
             ConsoleKeyInfo UserInput = Console.ReadKey(); // Get user input
 
             List<Vapen> inventoryList = new List<Vapen>();
@@ -28,6 +28,7 @@ namespace FightSimV2
             Character player = new Character(); //skapar spelaren
             Vapen playerWeapon = new Vapen();
             Creature enemy = new Creature();  //skapar enemy
+            enemy = enemyList[enemy.GenRandom(0, enemyList.Count)]; //välj en random enemy av de som finns från enemy listan
             Vapen enemyWeapon = new Mace();
 
             while (gameRunning)
@@ -94,7 +95,6 @@ namespace FightSimV2
                             }
                         }
 
-                        //keyRead = Console.ReadKey(true).Key;
                         UserInput = Console.ReadKey();
                         if (char.IsDigit(UserInput.KeyChar))
                         {
@@ -130,11 +130,11 @@ namespace FightSimV2
                         keyRead = Console.ReadKey(true).Key;
                         if (keyRead == ConsoleKey.D1)
                         {
-                            enemy.Hurt(playerWeapon.LightAttack(enemy.armor)); //light attack faktorerar in armor
+                            enemy.Hurt(playerWeapon.LightAttack(enemy.GetArmor())); //skadar enemy med light attack faktorerar in armor
                         }
                         else if (keyRead == ConsoleKey.D2)
                         {
-                            enemy.Hurt(playerWeapon.HeavyAttack(enemy.armor)); //heavy attack faktorerar in armor
+                            enemy.Hurt(playerWeapon.HeavyAttack(enemy.GetArmor())); //skadar enemy med heavy attack faktorerar in armor
                         }
 
                         if (enemy.GenRandom(0, 1) == 0) // 50/50 stance för enemy
@@ -145,13 +145,13 @@ namespace FightSimV2
                         {
                             enemy.DefensiveStance(enemyWeapon.GetMinDmg(), enemyWeapon.GetMaxDmg()); //Ökar Armor
                         }
-                        if (enemy.GenRandom(0, 1) == 0) //50/50 vilken attack för enemy
+                        if (enemy.GenRandom(0, 1) == 0) //50/50 vilken attack som enemy ska utföra
                         {
-                            player.Hurt(enemyWeapon.LightAttack(player.armor));
+                            player.Hurt(enemyWeapon.LightAttack(player.GetArmor())); //skadar enemy med light attack faktorerar in armor
                         }
                         else
                         {
-                            player.Hurt(enemyWeapon.HeavyAttack(player.armor));
+                            player.Hurt(enemyWeapon.HeavyAttack(player.GetArmor())); //skadar enemy med heavy attack faktorerar in armor
                         }
                         Console.Clear();
                     }
@@ -163,7 +163,7 @@ namespace FightSimV2
                             player.ReceiveXP(); //få xp om du vinner samt kolla om du lvlar
                             enemy.ReceiveXP(); //så att enemy kommer att skala med playern
 
-                            switch (playerWeapon.GenRandom(1, playerWeapon.GetAllWeaponsCount() + 1))
+                            switch (playerWeapon.GenRandom(1, playerWeapon.GetAllWeaponsCount() + 1)) // +1 eftersom att taket på en generator inte är exkluderande
                             {
                                 case 1:
 
