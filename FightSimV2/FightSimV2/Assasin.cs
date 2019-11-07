@@ -18,7 +18,7 @@
                 xpRequired += 50;
                 xp = 0;
 
-                statModifier = playerLevel; //Improve stats beroende på lvl
+                statModifier = playerLevel; //Improve stats beroende på lvl.
                 hp = maxHP + (15 * statModifier);
                 armor = armor + (2 * statModifier);
                 minDmg = minDmg + (20 * statModifier);
