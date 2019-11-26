@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using RestSharp;
+using System;
 using System.Collections.Generic;
 
 namespace FightSimV2
@@ -7,6 +9,15 @@ namespace FightSimV2
     {
         private static void Main(string[] args)
         {
+            RestClient client;
+
+            client = new RestClient("https://pokeapi.co/api/v2/");
+
+            RestRequest request = new RestRequest("pokemon/" + 4);
+            IRestResponse response = client.Get(request);
+            Pokemon pokemon = JsonConvert.DeserializeObject<Pokemon>(response.Content);
+            Console.WriteLine(pokemon.name);
+
             bool fighting = false;
             bool mainMenu = true;
             bool gameRunning = true;
@@ -67,7 +78,7 @@ namespace FightSimV2
                     keyRead = Console.ReadKey(true).Key;
                     if (keyRead == ConsoleKey.D1)
                     {
-                        player.Present(playerWeapon.GetWeaponName());
+                        player.Present(playerWeapon.GetWeaponName(), pokemon.name);
                     }
                     if (keyRead == ConsoleKey.D2)
                     {
