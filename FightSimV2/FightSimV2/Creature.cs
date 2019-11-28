@@ -8,7 +8,6 @@ namespace FightSimV2
     {
         //Den klass som player och enemy ärver från
         protected int hp;
-
         protected int maxHP;
         protected int level = 1;
         protected int xp = 0;

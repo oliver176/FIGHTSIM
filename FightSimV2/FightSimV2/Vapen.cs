@@ -2,6 +2,7 @@
 {
     internal class Vapen : BaseClass
     {
+        //variabler för alla stats ett vapen har
         protected int minDmg = 50;
         protected int maxDmg = 100;
         protected int dmg;
@@ -30,15 +31,15 @@
             return 4;
         }
 
-        public virtual int LightAttack(int enemyArmor)
+        public virtual int LightAttack(int enemyArmor) //attack metod som skadar enemy, virtual eftersom att spelaren och enemy ska kunna ha olika
         {
-            hitChance = GenRandom(minHitChance, maxHitChance);
+            hitChance = GenRandom(minHitChance, maxHitChance); //genererar chansen att du träffar
             if (hitChance > 33)
             {
                 dmg = GenRandom(minDmg, maxDmg);
                 return dmg / enemyArmor;
             }
-            else return 0;
+            else return 0; //om du missar gör 0 dmg
         }
 
         public virtual int HeavyAttack(int enemyArmor)
@@ -52,7 +53,7 @@
             else return 0;
         }
 
-        public string GetWeaponName()
+        public string GetWeaponName() //skriver ut namnet på vapnet samt dess dmg range.
         {
             if (weaponName == "")
             {
