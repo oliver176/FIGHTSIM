@@ -6,7 +6,9 @@ namespace FightSimV2
 {
     internal class Creature : BaseClass
     {
+        //Den klass som player och enemy ärver från
         protected int hp;
+
         protected int maxHP;
         protected int level = 1;
         protected int xp = 0;
@@ -19,6 +21,7 @@ namespace FightSimV2
 
         public Creature()
         {
+            //Sätter ett namn genom metoden Names()
             name = Names();
         }
 
@@ -26,6 +29,7 @@ namespace FightSimV2
         {
             //Läser alla rader från text filen
             string[] nameArray = File.ReadAllLines(@"C:\Users\oliver.sagefors\Documents\GitHub\FIGHTSIM\FightSimV2\FightSimV2\ListOfNames.txt", Encoding.UTF8);
+
             return nameArray[GenRandom(0, nameArray.Length - 1)]; //returnerar random namn från text filen
         }
 
@@ -46,18 +50,18 @@ namespace FightSimV2
 
         public void Hurt(int amount)
         {
-            hp -= amount;   //ta dmg amount
+            hp -= amount;   //ta emot dmg med värde amount
         }
 
         public void DefensiveStance(int minDmg, int maxDmg)
         {
-            if (offStance) //sätt tillbaks dmg till sitt normala värde
+            if (offStance) //Om du är i offStance och vill byta, ta bort +dmgen av offstance och sätt till false
             {
                 minDmg -= 20;
                 maxDmg -= 40;
                 offStance = false;
             }
-            else if (!defStance)
+            else if (!defStance) //ta mindre dmg
             {
                 armor += 2;
                 defStance = true;
@@ -66,12 +70,12 @@ namespace FightSimV2
 
         public void OffensiveStance(int minDmg, int maxDmg)
         {
-            if (defStance) //sätt tillbaks armor till sitt normala värde
+            if (defStance) //Om du är i defStance och vill byta, ta bort +armor av defStance och sätt till false
             {
                 armor -= 2;
                 defStance = false;
             }
-            else if (!offStance)
+            else if (!offStance) //gör mer dmg
             {
                 minDmg += 20;
                 maxDmg += 40;
@@ -79,7 +83,7 @@ namespace FightSimV2
             }
         }
 
-        public string GetStance()
+        public string GetStance() //returnera string med den stance du är i
         {
             if (offStance)
             {
@@ -92,7 +96,7 @@ namespace FightSimV2
             else return "";
         }
 
-        public virtual void Present(string weaponName)
+        public virtual void Present(string weaponName) //presentera info, kan vara olika för enemy/player därför virtual
         {
             Console.Clear();
             Console.WriteLine("Name: " + GetName());
@@ -139,18 +143,18 @@ namespace FightSimV2
         public virtual void ModifyStats(int playerLevel, int minDmg, int maxDmg)
         {
             statModifier = playerLevel; //Improve stats beroende på lvl
-            if (xp >= xpRequired)
+            if (xp >= xpRequired) //om du har tillräckligt med xp
             {
                 level++;
-                xpRequired += 50;
-                xp = 0;
+                xpRequired += 50; //nästa lvl kräver mer xp
+                xp = 0;   //reset xp värdet
 
                 hp = maxHP + (50 * statModifier);
                 armor = armor + (2 * statModifier);
                 minDmg = minDmg + (25 * statModifier);
                 maxDmg = maxDmg + (25 * statModifier);
             }
-            else hp = maxHP;
+            else hp = maxHP; //om du inte lvlar resetta hp till max. (Detta händer efter en fight)
         }
     }
 }

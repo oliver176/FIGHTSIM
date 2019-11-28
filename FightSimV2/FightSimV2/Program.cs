@@ -13,10 +13,9 @@ namespace FightSimV2
 
             client = new RestClient("https://pokeapi.co/api/v2/");
 
-            RestRequest request = new RestRequest("pokemon/" + 4);
-            IRestResponse response = client.Get(request);
-            Pokemon pokemon = JsonConvert.DeserializeObject<Pokemon>(response.Content);
-            Console.WriteLine(pokemon.name);
+            RestRequest request = new RestRequest("pokemon/" + 4); //Skickar en request för pokemon med id 4
+            IRestResponse response = client.Get(request);  //fångar requesten
+            Pokemon pokemon = JsonConvert.DeserializeObject<Pokemon>(response.Content); //Deserialize datan som du får från requesten så att det är läsbart.
 
             bool fighting = false;
             bool mainMenu = true;
@@ -27,33 +26,32 @@ namespace FightSimV2
 
             ConsoleKeyInfo UserInput = Console.ReadKey(); // Get user input
 
-            List<Vapen> inventoryList = new List<Vapen>();
-            List<Creature> enemyList = new List<Creature>
+            List<Vapen> inventoryList = new List<Vapen>(); //lista med vapen
+            List<Creature> enemyList = new List<Creature>  //lista för de enemies du kan fighta
             {
                 new Goblin(),
                 new Zombie()
             };
 
-            Character player = new Character(); //skapar spelaren
-            Vapen playerWeapon = new Vapen();
+            Character player = new Character(); //skapar en ny spelare
+            Vapen playerWeapon = new Vapen();   //skapar spelarens vapen
             Creature enemy = new Creature();  //skapar enemy
             enemy = enemyList[enemy.GenRandom(0, enemyList.Count)]; //välj en random enemy av de som finns från enemy listan
-            Vapen enemyWeapon = new Mace();
+            Vapen enemyWeapon = new Mace(); //skapar fiende vapnet
 
-            while (gameRunning)
+            while (gameRunning) //main game loopen
             {
                 while (classMenu == false)
                 {
-                    classMenu = false;
-                    ClassOptions(); //skriver ut alternativ
+                    ClassOptions(); //metod som skriver ut alternativ för att välja class (rouge, warrior etc.)
 
-                    keyRead = Console.ReadKey(true).Key;
+                    keyRead = Console.ReadKey(true).Key; //variabel som lagrar en keypress
                     if (keyRead == ConsoleKey.D1)
                     {
-                        player = new Brute();
-                        playerWeapon = new Mace();
-                        inventoryList.Add(playerWeapon);
-                        classMenu = true;
+                        player = new Brute(); //sätt player instansen till den nya klassen
+                        playerWeapon = new Mace();  //sätt vapnet till det specifika för klassen
+                        inventoryList.Add(playerWeapon);  //lägg till vapnet i inventoryn
+                        classMenu = true;   //blir true så att menyn inte ska komma upp igen
                     }
                     if (keyRead == ConsoleKey.D2)
                     {
@@ -73,16 +71,16 @@ namespace FightSimV2
                 }
                 while (mainMenu)
                 {
-                    MainMenu(); //skriver ut alternativ
+                    MainMenu(); //skriver ut alternativ för main menyn
 
                     keyRead = Console.ReadKey(true).Key;
                     if (keyRead == ConsoleKey.D1)
                     {
-                        player.Present(playerWeapon.GetWeaponName(), pokemon.name);
+                        player.PresentPlayer(playerWeapon.GetWeaponName(), pokemon.name); //Presentera information om spelaren
                     }
                     if (keyRead == ConsoleKey.D2)
                     {
-                        enemy.Present(enemyWeapon.GetWeaponName());
+                        enemy.Present(enemyWeapon.GetWeaponName());  //presentera information om enemy
                     }
                     if (keyRead == ConsoleKey.D3)
                     {
@@ -91,13 +89,13 @@ namespace FightSimV2
                         enemy = enemyList[enemy.GenRandom(0, enemyList.Count)]; //välj en random enemy av de som finns från enemy listan
                         Console.Clear();
                     }
-                    if (keyRead == ConsoleKey.D4)
+                    if (keyRead == ConsoleKey.D4) //inventory
                     {
                         Console.Clear();
                         Console.WriteLine("Pick a weapon to equip!");
                         for (int i = 0; i < playerWeapon.GetAllWeaponsCount(); i++)
                         {
-                            if (i < inventoryList.Count)
+                            if (i < inventoryList.Count) //skriv ut alla vapen i inventory
                             {
                                 Console.WriteLine("___________________");
                                 Console.WriteLine((i + 1) + ": " + inventoryList[i].weaponName);
@@ -110,7 +108,7 @@ namespace FightSimV2
                             int.TryParse(UserInput.KeyChar.ToString(), out int index); // use Parse if it's a Digit
                             if (index <= inventoryList.Count)
                             {
-                                playerWeapon = inventoryList[index - 1];
+                                playerWeapon = inventoryList[index - 1]; //vapnet blir input -1 eftersom första positionen är 0.
                             }
                         }
 
@@ -124,18 +122,20 @@ namespace FightSimV2
                         Console.WriteLine(player.GetName() + "'s HP: " + player.GetHp());  //Skriv ut deras hp
                         Console.WriteLine(enemy.GetName() + "'s HP: " + enemy.GetHp());
                         Console.WriteLine("___________________");
-                        StanceOptions();
+
+                        StanceOptions(); //presenterar de olika stancerna
+
                         keyRead = Console.ReadKey(true).Key;
                         if (keyRead == ConsoleKey.D1)
                         {
-                            player.DefensiveStance(playerWeapon.GetMinDmg(), playerWeapon.GetMaxDmg()); //Ökar armor
+                            player.DefensiveStance(playerWeapon.GetMinDmg(), playerWeapon.GetMaxDmg()); //Stance som ökar armor
                         }
                         else if (keyRead == ConsoleKey.D2)
                         {
-                            player.OffensiveStance(playerWeapon.GetMinDmg(), playerWeapon.GetMaxDmg()); //Ökar dmg
+                            player.OffensiveStance(playerWeapon.GetMinDmg(), playerWeapon.GetMaxDmg()); //Stance some ökar dmg
                         }
 
-                        AttackOptions();
+                        AttackOptions(); //presenterar attack valen (light/heavy)
                         keyRead = Console.ReadKey(true).Key;
                         if (keyRead == ConsoleKey.D1)
                         {
@@ -146,21 +146,21 @@ namespace FightSimV2
                             enemy.Hurt(playerWeapon.HeavyAttack(enemy.GetArmor())); //skadar enemy med heavy attack faktorerar in armor
                         }
 
-                        if (enemy.GenRandom(0, 1) == 0) // 50/50 stance för enemy
+                        if (enemy.GenRandom(0, 1) == 0) // 50/50 % chance vilken stance för enemy
                         {
-                            enemy.OffensiveStance(enemyWeapon.GetMinDmg(), enemyWeapon.GetMaxDmg()); //Ökar dmg
+                            enemy.OffensiveStance(enemyWeapon.GetMinDmg(), enemyWeapon.GetMaxDmg());
                         }
                         else
                         {
-                            enemy.DefensiveStance(enemyWeapon.GetMinDmg(), enemyWeapon.GetMaxDmg()); //Ökar Armor
+                            enemy.DefensiveStance(enemyWeapon.GetMinDmg(), enemyWeapon.GetMaxDmg());
                         }
-                        if (enemy.GenRandom(0, 1) == 0) //50/50 vilken attack som enemy ska utföra
+                        if (enemy.GenRandom(0, 1) == 0) //50/50 % chance vilken attack som enemy ska utföra
                         {
-                            player.Hurt(enemyWeapon.LightAttack(player.GetArmor())); //skadar enemy med light attack faktorerar in armor
+                            player.Hurt(enemyWeapon.LightAttack(player.GetArmor())); //skadar player med light attack faktorerar in armor
                         }
                         else
                         {
-                            player.Hurt(enemyWeapon.HeavyAttack(player.GetArmor())); //skadar enemy med heavy attack faktorerar in armor
+                            player.Hurt(enemyWeapon.HeavyAttack(player.GetArmor())); //skadar player med heavy attack faktorerar in armor
                         }
                         Console.Clear();
                     }
@@ -172,9 +172,9 @@ namespace FightSimV2
                             player.ReceiveXP(); //få xp om du vinner samt kolla om du lvlar
                             enemy.ReceiveXP(); //så att enemy kommer att skala med playern
 
-                            switch (playerWeapon.GenRandom(1, playerWeapon.GetAllWeaponsCount() + 1)) // +1 eftersom att taket på en generator inte är exkluderande
+                            switch (playerWeapon.GenRandom(1, playerWeapon.GetAllWeaponsCount() + 1)) // +1 eftersom att taket på en generator inte är inkluderande
                             {
-                                case 1:
+                                case 1: //4 olika vappen som kan "droppa"
 
                                     inventoryList.Add(new Mace()); Console.WriteLine("You receive a Mace!");
                                     break;

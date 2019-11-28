@@ -10,20 +10,12 @@ namespace FightSimV2
 
         public Character()
         {
-            RestClient client;
-
-            client = new RestClient("https://pokeapi.co/api/v2/");
-
-            RestRequest request = new RestRequest("pokemon/" + GenRandom(1, 100));
-            IRestResponse response = client.Get(request);
-            Pokemon pokemon = JsonConvert.DeserializeObject<Pokemon>(response.Content);
-
             maxHP = 5000 * statModifier;
             armor = GenRandom(1, 5) * statModifier;
             hp = maxHP;
         }
 
-        public override void Present(string weaponName, string pokemonName)
+        public void PresentPlayer(string weaponName, string pokemonName)
         {
             Console.Clear();
             Console.WriteLine("Name: " + GetName());
@@ -32,7 +24,7 @@ namespace FightSimV2
             Console.WriteLine("Armor rating: " + armor);
             Console.WriteLine("Equipped Weapon: " + weaponName);
             Console.WriteLine("Current Stance: " + GetStance());
-            Console.WriteLine("Favorite Pokemon: ");
+            Console.WriteLine("Favorite Pokemon: " + pokemonName);
             Console.WriteLine("____________________________________");
         }
 
