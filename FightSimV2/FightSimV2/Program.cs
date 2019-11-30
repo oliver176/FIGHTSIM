@@ -105,7 +105,7 @@ namespace FightSimV2
                         UserInput = Console.ReadKey();
                         if (char.IsDigit(UserInput.KeyChar))
                         {
-                            int.TryParse(UserInput.KeyChar.ToString(), out int index); // use Parse if it's a Digit
+                            int.TryParse(UserInput.KeyChar.ToString(), out int index); // använd parse om det är en digit
                             if (index <= inventoryList.Count)
                             {
                                 playerWeapon = inventoryList[index - 1]; //vapnet blir input -1 eftersom första positionen är 0.
